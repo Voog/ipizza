@@ -1,15 +1,17 @@
 module Pizza::Provider
   class Swedbank
     
-    cattr_accessor :service_url, :return_url, :cancel_url, :key, :key_secret, :cert, :snd_id, :encoding
+    class << self
+      attr_accessor :service_url, :return_url, :cancel_url, :key, :key_secret, :cert, :snd_id, :encoding
+    end
     
     def payment_request(payment, service = 1002)
       req = Pizza::PaymentRequest.new
-      req.service_url = self.service_url
+      req.service_url = self.class.service_url
       req.sign_params = {
         'VK_SERVICE' => '1002',
         'VK_VERSION' => '008',
-        'VK_SND_ID' => self.snd_id,
+        'VK_SND_ID' => self.class.snd_id,
         'VK_STAMP' => payment.stamp,
         'VK_AMOUNT' => sprintf('%.2f', payment.amount),
         'VK_CURR' => payment.currency,
@@ -18,14 +20,14 @@ module Pizza::Provider
       }
       
       req.extra_params = {
-        'VK_CHARSET' => self.encoding,
-        'VK_RETURN' => self.return_url,
-        'VK_CANCEL' => self.cancel_url
+        'VK_CHARSET' => self.class.encoding,
+        'VK_RETURN' => self.class.return_url,
+        'VK_CANCEL' => self.class.cancel_url
       }
       
       param_order = ['VK_SERVICE', 'VK_VERSION', 'VK_SND_ID', 'VK_STAMP', 'VK_AMOUNT', 'VK_CURR', 'VK_REF', 'VK_MSG']
       
-      req.sign(self.key, self.key_secret, param_order)
+      req.sign(self.class.key, self.class.key_secret, param_order)
       req
     end
     

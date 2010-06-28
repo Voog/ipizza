@@ -3,7 +3,12 @@ module Pizza::Provider
   # TODO: configure whether use sha-1 or md5 for signing and verification
   class Nordea
     
-    cattr_accessor :service_url, :return_url, :reject_url, :cancel_url, :key, :rcv_id, :rcv_account, :rcv_name, :language, :confirm, :keyvers
+    require 'pizza/provider/nordea/payment_request'
+    require 'pizza/provider/nordea/payment_response'
+        
+    class << self
+      attr_accessor :service_url, :return_url, :reject_url, :cancel_url, :key, :rcv_id, :rcv_account, :rcv_name, :language, :confirm, :keyvers
+    end
     
     def payment_request(payment, service = 1002)
       req = Pizza::Provider::Nordea::PaymentRequest.new

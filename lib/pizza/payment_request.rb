@@ -1,3 +1,6 @@
+require 'openssl'
+require 'base64'
+
 module Pizza
   class PaymentRequest
     

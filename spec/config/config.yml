@@ -1,0 +1,9 @@
+swedbank:
+  service_url: https://www.swedbank.ee/banklink
+  return_url: http://test.local/swedbank
+  cancel_url: http://test.local/swedbank
+  login: dealer
+  cert: certificates/bank.pub
+  key: certificates/dealer.key
+  key_secret: foobar
+  encoding: ISO-8859-4

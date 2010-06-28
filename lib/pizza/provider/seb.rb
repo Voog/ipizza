@@ -1,7 +1,9 @@
 module Pizza::Provider
-  class SEB
+  class Seb
     
-    cattr_accessor :service_url, :return_url, :cancel_url, :key, :key_secret, :cert, :snd_id, :encoding, :rec_acc, :rec_name
+    class << self
+      attr_accessor :service_url, :return_url, :cancel_url, :key, :key_secret, :cert, :snd_id, :encoding, :rec_acc, :rec_name
+    end
     
     def payment_request(payment, service = 1002)
       req = Pizza::PaymentRequest.new

@@ -1,13 +1,4 @@
-require 'pizza/payment'
-require 'pizza/payment_request'
-require 'pizza/payment_response'
-require 'pizza/util'
-require 'pizza/provider/swedbank'
-require 'pizza/provider/seb'
-require 'pizza/provider/sampo'
-require 'pizza/provider/nordea'
-require 'pizza/provider/nordea/payment_request'
-require 'pizza/provider/nordea/payment_response'
+require 'pizza'
 
 config = YAML::load_file(RAILS_ROOT + '/config/ipizza.yml')
 
