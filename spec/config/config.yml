@@ -3,7 +3,8 @@ swedbank:
   return_url: http://test.local/swedbank
   cancel_url: http://test.local/swedbank
   login: dealer
-  cert: certificates/bank.pub
-  key: certificates/dealer.key
+  cert: /Users/priit/Projects/ipizza/spec/certificates/bank.pub
+  key: /Users/priit/Projects/ipizza/spec/certificates/dealer.key
   key_secret: foobar
   encoding: ISO-8859-4
+  snd_id: sender
