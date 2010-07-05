@@ -9,8 +9,9 @@ Gem::Specification.new do |s|
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Priit Haamer"]
-  s.date = %q{2010-07-02}
-  s.description = %q{Simplifies generating payment requests and parsing responses from banks when using iPizza protocol.}
+  s.date = %q{2010-07-05}
+  s.description = %q{      Simplifies generating payment requests and parsing responses from banks when using iPizza protocol.
+}
   s.email = %q{priit@fraktal.ee}
   s.extra_rdoc_files = [
     "README.markdown"
