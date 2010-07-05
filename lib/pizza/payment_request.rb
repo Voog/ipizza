@@ -9,7 +9,7 @@ module Pizza
     attr_accessor :service_url
     
     def sign(privkey_path, privkey_secret, order, mac_param = 'VK_MAC')
-      privkey = File.read(privkey_path)
+      privkey = File.open(privkey_path, 'r') { |f| f.read }
       
       privkey = OpenSSL::PKey::RSA.new(privkey.gsub(/  /, ''), privkey_secret)
       

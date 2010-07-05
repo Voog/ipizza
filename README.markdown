@@ -19,15 +19,12 @@ Helpful links
 Todo
 ====
 
-* Write specs
 * Add usage examples
 * Proper Rails initialization
 * Write Rails controller and model generator
-* Write .gemspec file
 * Implement authorization services
 * Rails helper to generate iPizza request forms
-* Get rid of Rails dependencies
-* Autoload configuration from RAILS_ROOT/configure/ipizza.yml
+* Raise reasonable exception during configuration when certificates or keys cannot be loaded
 
 Authors
 =======

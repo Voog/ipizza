@@ -2,7 +2,7 @@ module Pizza::Provider
   class Sampo
     
     class << self
-      attr_accessor :service_url, :return_url, :key, :key_secret, :cert, :snd_id, :lang, :rec_acc, :rec_name
+      attr_accessor :service_url, :return_url, :file_key, :key_secret, :file_cert, :snd_id, :lang, :rec_acc, :rec_name
     end
     
     def payment_request(payment, service = 1002)

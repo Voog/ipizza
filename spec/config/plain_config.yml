@@ -3,8 +3,8 @@ swedbank:
   return_url: http://test.local/return
   cancel_url: http://test.local/cancel
   snd_id: dealer
-  cert: certificates/bank.pub
-  key: certificates/dealer.key
+  file_cert: ../certificates/bank.pub
+  file_key: ../certificates/dealer.key
   key_secret: foobar
   encoding: ISO-8859-4
   wtf: not

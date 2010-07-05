@@ -17,8 +17,12 @@ begin
   require 'jeweler'
   Jeweler::Tasks.new do |gemspec|
     gemspec.name = 'ipizza'
+    
     gemspec.summary = 'Implements iPizza protocol to communicate with Estonian Banks'
-    gemspec.description = 'Simplifies generating payment requests and parsing responses from banks when using iPizza protocol.'
+    gemspec.description = <<-DESC
+      Simplifies generating payment requests and parsing responses from banks when using iPizza protocol.
+    DESC
+    
     gemspec.email = 'priit@fraktal.ee'
     gemspec.homepage = 'http://github.com/priith/ipizza'
     gemspec.authors = ['Priit Haamer']
