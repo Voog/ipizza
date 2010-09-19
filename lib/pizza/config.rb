@@ -3,7 +3,7 @@ require 'yaml'
 module Pizza
   class Config
     class << self
-      
+
       def load_from_file(yaml_path)
         config = YAML::load_file(yaml_path)
         
