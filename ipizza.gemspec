@@ -9,7 +9,7 @@ Gem::Specification.new do |s|
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Priit Haamer"]
-  s.date = %q{2010-07-05}
+  s.date = %q{2010-09-19}
   s.description = %q{      Simplifies generating payment requests and parsing responses from banks when using iPizza protocol.
 }
   s.email = %q{priit@fraktal.ee}
@@ -36,7 +36,6 @@ Gem::Specification.new do |s|
      "lib/pizza/provider/seb.rb",
      "lib/pizza/provider/swedbank.rb",
      "lib/pizza/util.rb",
-     "rails/init.rb",
      "spec/certificates/bank.key",
      "spec/certificates/bank.pub",
      "spec/certificates/dealer.key",
