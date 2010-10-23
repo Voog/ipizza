@@ -5,7 +5,7 @@
 
 Gem::Specification.new do |s|
   s.name = %q{ipizza}
-  s.version = "0.0.1"
+  s.version = "0.2.0"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Priit Haamer"]
@@ -25,6 +25,7 @@ Gem::Specification.new do |s|
      "ipizza.gemspec",
      "lib/ipizza.rb",
      "lib/ipizza/authentication_request.rb",
+     "lib/ipizza/authentication_response.rb",
      "lib/ipizza/config.rb",
      "lib/ipizza/payment.rb",
      "lib/ipizza/payment_request.rb",
@@ -35,7 +36,11 @@ Gem::Specification.new do |s|
      "lib/ipizza/provider/sampo.rb",
      "lib/ipizza/provider/seb.rb",
      "lib/ipizza/provider/swedbank.rb",
+     "lib/ipizza/request.rb",
+     "lib/ipizza/response.rb",
      "lib/ipizza/util.rb",
+     "spec/certificates/bank.crt",
+     "spec/certificates/bank.csr",
      "spec/certificates/bank.key",
      "spec/certificates/bank.pub",
      "spec/certificates/dealer.key",
