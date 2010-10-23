@@ -1,11 +1,24 @@
 Implements iPizza protocol to communicate with Estonian Banks
 
+Usage
+=====
+
+Add gem dependency in your `Gemfile` and install the gem:
+
+    gem 'ipizza', :git => 'git://github.com/priithaamer/ipizza.git'
+
+Building payment request
+------------------------
+
+    payment = Ipizza::Payment.new(:stamp => 1, :amount => '123.34', :refnum => 1, :message => 'Payment message', :currency => 'EUR')
+    request = Ipizza::Provider::Swedbank.new.payment_request(@payment)
+
 Gateway specifications
 ======================
 
 This library currently works with four Estonian Banks. Here are their respective interface specifications:
 
-* [Swedbank](https://www.swedbank.ee/business/d2d/collection/banklink/description)
+* [Swedbank](https://www.swedbank.ee/static/pdf/business/d2d/paymentcollection/info_banklink_techspec_est.pdf)
 * [SEB](http://www.seb.ee/index/1302)
 * [Sampo](http://www.sampopank.ee/et/14732.html)
 * [Nordea](http://www.nordea.ee/Teenused+ärikliendile/E-lahendused/787802.html)
