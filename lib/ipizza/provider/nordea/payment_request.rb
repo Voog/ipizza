@@ -1,7 +1,7 @@
 require 'digest/md5'
 
-module Pizza::Provider
-  class Nordea::PaymentRequest < Pizza::PaymentRequest
+module Ipizza::Provider
+  class Nordea::PaymentRequest < Ipizza::PaymentRequest
     
     attr_accessor :params
     attr_accessor :service_url

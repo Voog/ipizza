@@ -1,6 +1,6 @@
 require 'yaml'
 
-module Pizza
+module Ipizza
   class Config
     class << self
 
@@ -24,7 +24,7 @@ module Pizza
       
       def method_missing(m, *args)
         if /^(swedbank|seb|sampo|nordea)_(.*)=$/ =~ m.to_s
-          clz = Pizza::Provider.const_get($1.capitalize)
+          clz = Ipizza::Provider.const_get($1.capitalize)
           if clz.respond_to?(:"#{$2}=")
             return clz.send(:"#{$2}=", *args)
           end

@@ -1,7 +1,7 @@
 require 'openssl'
 require 'base64'
 
-module Pizza
+module Ipizza
   class PaymentRequest
     
     attr_accessor :extra_params
@@ -13,7 +13,7 @@ module Pizza
       
       privkey = OpenSSL::PKey::RSA.new(privkey.gsub(/  /, ''), privkey_secret)
       
-      signature = privkey.sign(OpenSSL::Digest::SHA1.new, Pizza::Util.mac_data_string(sign_params, order))
+      signature = privkey.sign(OpenSSL::Digest::SHA1.new, Ipizza::Util.mac_data_string(sign_params, order))
       signature = Base64.encode64(signature).gsub(/\n/, '')
       
       self.sign_params[mac_param] = signature

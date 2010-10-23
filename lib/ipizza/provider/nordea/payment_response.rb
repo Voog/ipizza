@@ -1,7 +1,7 @@
 require 'digest/md5'
 
-module Pizza::Provider
-  class Nordea::PaymentResponse < Pizza::PaymentResponse
+module Ipizza::Provider
+  class Nordea::PaymentResponse < Ipizza::PaymentResponse
     
     def initialize(params)
       @params = params
@@ -21,7 +21,7 @@ module Pizza::Provider
     end
     
     def payment_info
-      @payment_info ||= Pizza::Payment.new(:stamp => @params['RETURN_STAMP'], :refnum => @params['RETURN_REF'])
+      @payment_info ||= Ipizza::Payment.new(:stamp => @params['RETURN_STAMP'], :refnum => @params['RETURN_REF'])
     end
     
     private

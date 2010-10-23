@@ -1,1 +1,1 @@
-require 'pizza'
+require 'ipizza'

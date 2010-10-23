@@ -1,4 +1,4 @@
 require File.expand_path(File.dirname(__FILE__) + '/../../../spec_helper')
 
-describe Pizza::Provider::Nordea::PaymentRequest do
+describe Ipizza::Provider::Nordea::PaymentRequest do
 end

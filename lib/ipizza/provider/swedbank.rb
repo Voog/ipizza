@@ -1,4 +1,4 @@
-module Pizza::Provider
+module Ipizza::Provider
   class Swedbank
     
     class << self
@@ -6,7 +6,7 @@ module Pizza::Provider
     end
     
     def payment_request(payment, service = 1002)
-      req = Pizza::PaymentRequest.new
+      req = Ipizza::PaymentRequest.new
       req.service_url = self.class.service_url
       req.sign_params = {
         'VK_SERVICE' => '1002',
@@ -15,7 +15,7 @@ module Pizza::Provider
         'VK_STAMP' => payment.stamp,
         'VK_AMOUNT' => sprintf('%.2f', payment.amount),
         'VK_CURR' => payment.currency,
-        'VK_REF' => Pizza::Util.sign_731(payment.refnum),
+        'VK_REF' => Ipizza::Util.sign_731(payment.refnum),
         'VK_MSG' => payment.message
       }
       
@@ -32,7 +32,7 @@ module Pizza::Provider
     end
     
     def payment_response(params)
-      response = Pizza::PaymentResponse.new(params, Pizza::Util::SWEDBANK)
+      response = Ipizza::PaymentResponse.new(params, Ipizza::Util::SWEDBANK)
       response.verify(self.class.file_cert, 'ISO-8859-4')
       
       return response

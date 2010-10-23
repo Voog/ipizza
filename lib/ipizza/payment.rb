@@ -1,4 +1,4 @@
-module Pizza
+module Ipizza
   class Payment
     
     attr_accessor :stamp, :amount, :currency, :refnum, :receiver_account, :receiver_name, :sender_account, :sender_name, :message, :transaction_id

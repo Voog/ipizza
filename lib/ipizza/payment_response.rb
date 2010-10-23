@@ -1,4 +1,4 @@
-module Pizza
+module Ipizza
   class PaymentResponse
     
     attr_accessor :provider
@@ -21,7 +21,7 @@ module Pizza
       verify_params = param_order.inject(Hash.new) { |h, p| h[p] = @params[p]; h }
       
       certificate = OpenSSL::X509::Certificate.new(File.read(certificate_path).gsub(/  /, '')).public_key
-      mac_string = Pizza::Util.mac_data_string(verify_params, param_order, 'UTF-8', charset)
+      mac_string = Ipizza::Util.mac_data_string(verify_params, param_order, 'UTF-8', charset)
       
       @valid = certificate.verify(OpenSSL::Digest::SHA1.new, Base64.decode64(@params['VK_MAC']), mac_string)
     end
@@ -39,7 +39,7 @@ module Pizza
     end
     
     def payment_info
-      @payment_info ||= Pizza::Payment.new(
+      @payment_info ||= Ipizza::Payment.new(
         :stamp => @params['VK_STAMP'], :amount => @params['VK_AMOUNT'], :currency => @params['VK_CURR'],
         :refnum => @params['VK_REF'], :message => @params['VK_MSG'], :transaction_id => @params['VK_T_NO'],
         :receiver_account => @params['VK_REC_ACC'], :receiver_name => @params['VK_REC_NAME'],

@@ -1,4 +1,4 @@
-module Pizza
+module Ipizza
   class Util
     
     SWEDBANK = 'swedbank'
