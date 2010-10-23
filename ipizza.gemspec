@@ -9,7 +9,7 @@ Gem::Specification.new do |s|
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Priit Haamer"]
-  s.date = %q{2010-09-19}
+  s.date = %q{2010-10-23}
   s.description = %q{      Simplifies generating payment requests and parsing responses from banks when using iPizza protocol.
 }
   s.email = %q{priit@fraktal.ee}
@@ -52,7 +52,7 @@ Gem::Specification.new do |s|
      "spec/ipizza/util_spec.rb",
      "spec/spec.opts",
      "spec/spec_helper.rb",
-     "spec/support/ipizza.rb"
+     "spec/support/pizza.rb"
   ]
   s.homepage = %q{http://github.com/priith/ipizza}
   s.rdoc_options = ["--charset=UTF-8"]
@@ -69,7 +69,7 @@ Gem::Specification.new do |s|
      "spec/ipizza/provider/swedbank_spec.rb",
      "spec/ipizza/util_spec.rb",
      "spec/spec_helper.rb",
-     "spec/support/ipizza.rb"
+     "spec/support/pizza.rb"
   ]
 
   if s.respond_to? :specification_version then
