@@ -1,4 +1,4 @@
-Implements iPizza protocol to communicate with Estonian Banks
+Implements iPizza protocol to communicate with Estonian Banks.
 
 Usage
 =====
@@ -6,6 +6,45 @@ Usage
 Add gem dependency in your `Gemfile` and install the gem:
 
     gem 'ipizza', :git => 'git://github.com/priithaamer/ipizza.git'
+
+Configuration
+=============
+
+Configuration can be made in two different ways, using `Ipizza::Config.configure` block or loading configuration properties from YAML file.
+
+Loading from YAML file:
+
+    Ipizza::Config.load_from_file('config.yml')
+
+Configuration values should be set in YAML file in **provider.attribute_value** format. See example YAML file below in "Configuration parameters" section.
+
+At any time, configuration can be modified with `Ipizza::Config.configure` block:
+
+    Ipizza::Config.configure do |c|
+      c.swedbank_service_url = 'http://foo.bar/swedbank'
+    end
+
+Configuration parameters
+------------------------
+
+    swedbank:
+      service_url: http://foo.bar/swedbank
+      return_url: http://mycompany.com/store
+      cancel_url: http://mycompany.com/cancel
+      
+      # Your private key file path. Can be specified relatively
+      # to YAML file
+      file_key: ./certificates/my_private.key
+      
+      # If your private key is protected with password,
+      # provide it here
+      key_secret: private_key_password
+      
+      # Path to bank's public key file. Can be specified
+      # relatively to YAML file
+      file_cert: ./certificates/bank_public.crt
+      snd_id: dealer
+      encoding: UTF-8
 
 Payment requests
 ----------------
@@ -46,15 +85,14 @@ Helpful links
 Todo
 ====
 
-* Add usage examples
-* Proper Rails initialization
-* Write Rails controller and model generator
-* Rails helper to generate iPizza request forms
 * Raise reasonable exception during configuration when certificates or keys cannot be loaded
+* Write ipizza-rails module:
+  * Proper Rails initialization
+  * Write Rails controller and model generator
+  * Rails helper to generate iPizza request forms
 
 Authors
 =======
 
 * Priit Haamer
 * Tarmo Talu (Thanks for the 7-3-1 algorithm)
-* *Add yourself here*
