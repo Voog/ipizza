@@ -79,8 +79,8 @@ This library currently works with four Estonian Banks. Here are their respective
 Helpful links
 =============
 
-* [Repository](http://github.com/priith/ipizza/tree/master)
-* [Issue tracker](http://github.com/priith/ipizza/issues)
+* [Repository](http://github.com/priithaamer/ipizza/tree/master)
+* [Issue tracker](http://github.com/priithaamer/ipizza/issues)
 
 Todo
 ====
