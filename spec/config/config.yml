@@ -6,5 +6,5 @@ swedbank:
   file_cert: ../certificates/bank.pub
   file_key: ../certificates/dealer.key
   key_secret: foobar
-  encoding: ISO-8859-4
+  encoding: UTF-8
   snd_id: sender
