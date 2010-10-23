@@ -3,7 +3,7 @@ swedbank:
   return_url: http://test.local/swedbank
   cancel_url: http://test.local/swedbank
   login: dealer
-  file_cert: ../certificates/bank.pub
+  file_cert: ../certificates/bank.crt
   file_key: ../certificates/dealer.key
   key_secret: foobar
   encoding: UTF-8

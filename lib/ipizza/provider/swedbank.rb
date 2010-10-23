@@ -33,8 +33,7 @@ module Ipizza::Provider
 
     def payment_response(params)
       response = Ipizza::PaymentResponse.new(params, Ipizza::Util::SWEDBANK)
-      response.verify(self.class.file_cert, 'ISO-8859-4')
-
+      response.verify(self.class.file_cert, self.class.encoding)
       return response
     end
 
@@ -59,6 +58,12 @@ module Ipizza::Provider
 
       req.sign(self.class.file_key, self.class.key_secret, param_order)
       req
+    end
+
+    def authentication_response(params)
+      response = Ipizza::AuthenticationResponse.new(params, Ipizza::Util::SWEDBANK)
+      response.verify(self.class.file_cert, self.class.encoding)
+      return response
     end
   end
 end

@@ -14,9 +14,7 @@ describe Ipizza::Provider::Swedbank, 'payment_request' do
 end
 
 describe Ipizza::Provider::Swedbank, 'payment_response' do
-  
   it 'should parse and verify the payment response from bank'
-  
 end
 
 describe Ipizza::Provider::Swedbank, 'authentication_request' do
@@ -32,5 +30,24 @@ describe Ipizza::Provider::Swedbank, 'authentication_request' do
 end
 
 describe Ipizza::Provider::Swedbank, 'authentication_response' do
-  it 'should parse and verify the authentication response from bank'
+  before(:each) do
+    @params = {
+      'VK_SERVICE' => '3002', 'VK_VERSION' => '008', 'VK_USER' => 'dealer',
+      'VK_DATE' => '30.03.1981', 'VK_TIME' => '00:00:00', 'VK_SND_ID' => 'SWEDBANK',
+      'VK_INFO' => 'ISIK:37508166516;NIMI:JAAN SAAR',
+      'VK_MAC' => 'ds/a+lwQhq1cs34mCqbpkNkXt/6fHwxii5+G+qA9vbhic/6TUnkIiJK+gFUZzMgRKDxOiOTD44zK7P9v58G972YbNvI3+JgZmzXXTkuHOk3wfGQFdNLat+ezMdkt8EU8j6N3TLZ/8UxNl+eKGsm/RJL4QKGpg3/Sfbza22XHERepIrMyFsQXqhnSwDZF2VT6XoRJuYI+nret0pn7Bcm22AFwz4OAv9R6fgRQ2w3m3g0bOZp/ea52fv+8UivNsyo/llbajqJAgCVdRz8Jm9fSg0A/falsVVkefEEgDQwGEElxQwJ9aSj1A/NUA40cqjIIPGhoVtA7/p+VklH88cA0pQ=='
+    }
+  end
+  
+  it 'should parse and verify the authentication response from bank' do
+    Ipizza::Provider::Swedbank.new.authentication_response(@params).should be_valid
+  end
+  
+  it 'should get user social security id from the response' do
+    Ipizza::Provider::Swedbank.new.authentication_response(@params).info_social_security_id == '37508166516'
+  end
+  
+  it 'should get user name from the response' do
+    Ipizza::Provider::Swedbank.new.authentication_response(@params).info_name == 'JAAN SAAR'
+  end
 end
