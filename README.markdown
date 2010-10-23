@@ -7,11 +7,25 @@ Add gem dependency in your `Gemfile` and install the gem:
 
     gem 'ipizza', :git => 'git://github.com/priithaamer/ipizza.git'
 
-Building payment request
-------------------------
+Payment requests
+----------------
+
+### Building request
 
     payment = Ipizza::Payment.new(:stamp => 1, :amount => '123.34', :refnum => 1, :message => 'Payment message', :currency => 'EUR')
     request = Ipizza::Provider::Swedbank.new.payment_request(@payment)
+
+Authentication requests
+-----------------------
+
+### Building request
+
+    request = Ipizza::Provider::Swedbank.new.authentication_request
+
+### Validating response
+
+    response = Ipizza::Provider::Swedbank.new.authentication_response({'VK_PARAM_1' => 'VALUE 1', ...})
+    response.valid?
 
 Gateway specifications
 ======================
@@ -35,7 +49,6 @@ Todo
 * Add usage examples
 * Proper Rails initialization
 * Write Rails controller and model generator
-* Implement authorization services
 * Rails helper to generate iPizza request forms
 * Raise reasonable exception during configuration when certificates or keys cannot be loaded
 
