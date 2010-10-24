@@ -67,7 +67,7 @@ module Ipizza
 
       # p(x) is length of the field x represented by three digits
       def func_p(val)
-        sprintf("%03i", val.scan(/./).size)
+        sprintf("%03i", val.size)
       end
     end
   end

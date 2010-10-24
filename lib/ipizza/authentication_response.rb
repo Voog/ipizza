@@ -14,7 +14,7 @@ module Ipizza
     end
     
     def info_social_security_id
-      /ISIK:(\d+)/i.match(@params['VK_INFO'])[1] if @params['VK_INFO']
+      /ISIK:([^;.]+)/i.match(@params['VK_INFO'])[1] if @params['VK_INFO']
     end
     
     def info_name

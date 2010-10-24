@@ -1,3 +1,4 @@
+require 'tempfile'
 require File.expand_path(File.dirname(__FILE__) + '/../spec_helper')
 
 describe Ipizza::Config, 'load_from_file' do
@@ -17,16 +18,26 @@ describe Ipizza::Config, 'load_from_file' do
     Ipizza::Provider::Seb.service_url.should == 'https://www.seb.ee/banklink'
   end
   
-  it 'should throw an error when certificate file does not exist'
-  
-  it 'should accept environment-based configuration file'
-
   it 'should load certificates from path relative to configuration file' do
     Ipizza::Provider::Swedbank.file_key.should == File.expand_path(File.dirname(__FILE__) + '/../certificates/dealer.key')
     Ipizza::Provider::Swedbank.file_cert.should == File.expand_path(File.dirname(__FILE__) + '/../certificates/bank.pub')
   end
   
-  it 'should load certificates from absolute file paths'
+  it 'should load certificates from absolute file paths' do
+    cfg = {'swedbank' => YAML::load_file(File.expand_path(File.dirname(__FILE__) + '/../config/config.yml'))['swedbank']}
+    cfg['swedbank']['file_key'] = File.expand_path(File.dirname(__FILE__) + '/../certificates/dealer.key')
+    cfg['swedbank']['file_cert'] = File.expand_path(File.dirname(__FILE__) + '/../certificates/bank.pub')
+    
+    Tempfile::open('config.yml') do |tmp|
+      tmp << cfg.to_yaml
+      tmp.flush
+      
+      config = Ipizza::Config.load_from_file(File.expand_path(tmp.path))
+      
+      Ipizza::Provider::Swedbank.file_key.should == File.expand_path(File.dirname(__FILE__) + '/../certificates/dealer.key')
+      Ipizza::Provider::Swedbank.file_cert.should == File.expand_path(File.dirname(__FILE__) + '/../certificates/bank.pub')
+    end
+  end
 end
 
 describe Ipizza::Config, 'configure' do
