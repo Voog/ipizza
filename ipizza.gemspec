@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = %q{ipizza}
-  s.version = "0.2.0"
+  s.version = "0.3.0"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Priit Haamer"]
-  s.date = %q{2010-10-23}
+  s.date = %q{2010-10-24}
   s.description = %q{      Simplifies generating payment requests and parsing responses from banks when using iPizza protocol.
 }
   s.email = %q{priit@fraktal.ee}
@@ -21,6 +21,7 @@ Gem::Specification.new do |s|
      "README.markdown",
      "Rakefile",
      "VERSION",
+     "autotest/discover.rb",
      "init.rb",
      "ipizza.gemspec",
      "lib/ipizza.rb",
@@ -45,8 +46,12 @@ Gem::Specification.new do |s|
      "spec/certificates/bank.pub",
      "spec/certificates/dealer.key",
      "spec/certificates/dealer.pub",
+     "spec/certificates/seb_test_priv.pem",
+     "spec/certificates/seb_test_pub.crt",
+     "spec/certificates/seb_test_pub.pem",
      "spec/config/config.yml",
      "spec/config/plain_config.yml",
+     "spec/ipizza/authentication_response_spec.rb",
      "spec/ipizza/config_spec.rb",
      "spec/ipizza/provider/nordea/payment_request_spec.rb",
      "spec/ipizza/provider/nordea/payment_response_spec.rb",
@@ -55,17 +60,17 @@ Gem::Specification.new do |s|
      "spec/ipizza/provider/seb_spec.rb",
      "spec/ipizza/provider/swedbank_spec.rb",
      "spec/ipizza/util_spec.rb",
-     "spec/spec.opts",
      "spec/spec_helper.rb",
      "spec/support/pizza.rb"
   ]
-  s.homepage = %q{http://github.com/priith/ipizza}
+  s.homepage = %q{http://github.com/priithaamer/ipizza}
   s.rdoc_options = ["--charset=UTF-8"]
   s.require_paths = ["lib"]
   s.rubygems_version = %q{1.3.7}
   s.summary = %q{Implements iPizza protocol to communicate with Estonian Banks}
   s.test_files = [
-    "spec/ipizza/config_spec.rb",
+    "spec/ipizza/authentication_response_spec.rb",
+     "spec/ipizza/config_spec.rb",
      "spec/ipizza/provider/nordea/payment_request_spec.rb",
      "spec/ipizza/provider/nordea/payment_response_spec.rb",
      "spec/ipizza/provider/nordea_spec.rb",
