@@ -1,8 +1,5 @@
-require 'openssl'
-
 class Ipizza::Response
 
-  attr_accessor :provider
   attr_accessor :verify_params
   attr_accessor :verify_params_order
   
@@ -13,9 +10,8 @@ class Ipizza::Response
     '1902' => ['VK_SERVICE', 'VK_VERSION', 'VK_SND_ID', 'VK_REC_ID', 'VK_STAMP', 'VK_REF', 'VK_MSG', 'VK_ERROR_CODE']
   }  
   
-  def initialize(params, provider)
+  def initialize(params)
     @params = params
-    @provider = provider
   end
 
   def verify(certificate_path, charset = 'UTF-8')
@@ -23,7 +19,6 @@ class Ipizza::Response
     verify_params = param_order.inject(Hash.new) { |h, p| h[p] = @params[p]; h }
     mac_string = Ipizza::Util.mac_data_string(verify_params, param_order, 'UTF-8', charset)
 
-    certificate = OpenSSL::X509::Certificate.new(File.read(certificate_path).gsub(/  /, '')).public_key
-    @valid = certificate.verify(OpenSSL::Digest::SHA1.new, Base64.decode64(@params['VK_MAC']), mac_string)
+    @valid = Ipizza::Util.verify_signature(certificate_path, @params['VK_MAC'], mac_string)
   end
 end

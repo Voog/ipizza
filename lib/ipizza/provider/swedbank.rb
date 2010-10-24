@@ -32,7 +32,7 @@ module Ipizza::Provider
     end
 
     def payment_response(params)
-      response = Ipizza::PaymentResponse.new(params, Ipizza::Util::SWEDBANK)
+      response = Ipizza::PaymentResponse.new(params)
       response.verify(self.class.file_cert, self.class.encoding)
       return response
     end
@@ -61,7 +61,7 @@ module Ipizza::Provider
     end
 
     def authentication_response(params)
-      response = Ipizza::AuthenticationResponse.new(params, Ipizza::Util::SWEDBANK)
+      response = Ipizza::AuthenticationResponse.new(params)
       response.verify(self.class.file_cert, self.class.encoding)
       return response
     end

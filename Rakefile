@@ -17,7 +17,7 @@ begin
     DESC
     
     gemspec.email = 'priit@fraktal.ee'
-    gemspec.homepage = 'http://github.com/priith/ipizza'
+    gemspec.homepage = 'http://github.com/priithaamer/ipizza'
     gemspec.authors = ['Priit Haamer']
   end
 rescue LoadError

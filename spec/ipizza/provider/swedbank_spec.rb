@@ -42,12 +42,4 @@ describe Ipizza::Provider::Swedbank, 'authentication_response' do
   it 'should parse and verify the authentication response from bank' do
     Ipizza::Provider::Swedbank.new.authentication_response(@params).should be_valid
   end
-  
-  it 'should get user social security id from the response' do
-    Ipizza::Provider::Swedbank.new.authentication_response(@params).info_social_security_id == '37508166516'
-  end
-  
-  it 'should get user name from the response' do
-    Ipizza::Provider::Swedbank.new.authentication_response(@params).info_name == 'JAAN SAAR'
-  end
 end

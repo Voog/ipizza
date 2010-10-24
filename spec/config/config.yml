@@ -8,3 +8,14 @@ swedbank:
   key_secret: foobar
   encoding: UTF-8
   snd_id: sender
+
+seb:
+  service_url: https://www.seb.ee/banklink
+  return_url: http://test.local/seb
+  cancel_url: http://test.local/seb
+  login: dealer
+  file_cert: ../certificates/seb_test_pub.crt
+  file_key: ../certificates/dealer.key
+  key_secret: foobar
+  encoding: UTF-8
+  snd_id: sender
