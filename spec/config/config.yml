@@ -19,3 +19,14 @@ seb:
   key_secret: foobar
   encoding: UTF-8
   snd_id: sender
+
+nordea:
+  service_url: https://netbank.nordea.com/pnbepaytest/epayn.jsp
+  return_url: http://test.local/nordea
+  reject_url: http://test.local/nordea
+  cancel_url: http://test.local/nordea
+  key: ../certificates/nordea_test_priv
+  rcv_id: '12345678'
+  language: '4'
+  confirm: 'YES'
+  keyvers: '0001'
