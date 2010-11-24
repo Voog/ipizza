@@ -16,7 +16,7 @@ module Ipizza::Provider
       req.params = {
         'VERSION' => '0003',
         'STAMP' => payment.stamp,
-        'RCV_ID' => self.rcv_id,
+        'RCV_ID' => self.class.rcv_id,
         # 'RCV_ACCOUNT' => self.rcv_account,
         # 'RCV_NAME' => self.rcv_name,
         'LANGUAGE' => self.language,
@@ -24,22 +24,22 @@ module Ipizza::Provider
         'REF' => Ipizza::Util.sign_731(payment.refnum),
         'DATE' => 'EXPRESS',
         'MSG' => payment.message,
-        'CONFIRM' => self.confirm,
+        'CONFIRM' => self.class.confirm,
         'CUR' => payment.currency,
-        'KEYVERS' => self.keyvers,
-        'REJECT' => self.reject_url,
-        'RETURN' => self.return_url,
-        'CANCEL' => self.cancel_url
+        'KEYVERS' => self.class.keyvers,
+        'REJECT' => self.class.reject_url,
+        'RETURN' => self.class.return_url,
+        'CANCEL' => self.class.cancel_url
       }
       
-      req.sign(self.key)
+      req.sign(self.class.key)
       req
     end
     
     def payment_response(params)
       response = Ipizza::Provider::Nordea::PaymentResponse.new(params)
       response.provider = Ipizza::Util::NORDEA
-      response.verify(self.key)
+      response.verify(self.class.key)
       
       return response
     end
