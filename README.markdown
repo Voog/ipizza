@@ -5,7 +5,7 @@ Usage
 
 Add gem dependency in your `Gemfile` and install the gem:
 
-    gem 'ipizza', :git => 'git://github.com/priithaamer/ipizza.git'
+    gem 'ipizza'
 
 Configuration
 =============
