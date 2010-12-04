@@ -51,7 +51,10 @@ Payment requests
 
 ### Building request
 
-    payment = Ipizza::Payment.new(:stamp => 1, :amount => '123.34', :refnum => 1, :message => 'Payment message', :currency => 'EUR')
+    payment = Ipizza::Payment.new(
+      :stamp => 1, :amount => '123.34', :refnum => 1,
+      :message => 'Payment message', :currency => 'EUR'
+    )
     request = Ipizza::Provider::Swedbank.new.payment_request(@payment)
 
 Authentication requests
@@ -79,7 +82,7 @@ This library currently works with four Estonian Banks. Here are their respective
 Helpful links
 =============
 
-* [Repository](http://github.com/priithaamer/ipizza/tree/master)
+* [Repository](http://github.com/priithaamer/ipizza)
 * [Issue tracker](http://github.com/priithaamer/ipizza/issues)
 
 Todo
