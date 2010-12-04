@@ -7,7 +7,7 @@ module Ipizza::Provider
     attr_accessor :service_url
     
     def sign(key_path)
-      key = File.read(key_path)
+      key = File.read(key_path).strip
       self.params['MAC'] = Digest::MD5.hexdigest(mac_data_string(key)).upcase
     end
     
