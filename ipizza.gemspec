@@ -5,7 +5,7 @@
 
 Gem::Specification.new do |s|
   s.name = %q{ipizza}
-  s.version = "0.3.0"
+  s.version = "0.4.0"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Priit Haamer"]
@@ -18,6 +18,9 @@ Gem::Specification.new do |s|
   ]
   s.files = [
     ".gitignore",
+     ".rspec",
+     "Gemfile",
+     "Gemfile.lock",
      "README.markdown",
      "Rakefile",
      "VERSION",
@@ -32,6 +35,8 @@ Gem::Specification.new do |s|
      "lib/ipizza/payment_request.rb",
      "lib/ipizza/payment_response.rb",
      "lib/ipizza/provider/nordea.rb",
+     "lib/ipizza/provider/nordea/authentication_request.rb",
+     "lib/ipizza/provider/nordea/authentication_response.rb",
      "lib/ipizza/provider/nordea/payment_request.rb",
      "lib/ipizza/provider/nordea/payment_response.rb",
      "lib/ipizza/provider/sampo.rb",
@@ -54,6 +59,7 @@ Gem::Specification.new do |s|
      "spec/config/plain_config.yml",
      "spec/ipizza/authentication_response_spec.rb",
      "spec/ipizza/config_spec.rb",
+     "spec/ipizza/provider/nordea/authentication_response_spec.rb",
      "spec/ipizza/provider/nordea/payment_request_spec.rb",
      "spec/ipizza/provider/nordea/payment_response_spec.rb",
      "spec/ipizza/provider/nordea_spec.rb",
@@ -72,6 +78,7 @@ Gem::Specification.new do |s|
   s.test_files = [
     "spec/ipizza/authentication_response_spec.rb",
      "spec/ipizza/config_spec.rb",
+     "spec/ipizza/provider/nordea/authentication_response_spec.rb",
      "spec/ipizza/provider/nordea/payment_request_spec.rb",
      "spec/ipizza/provider/nordea/payment_response_spec.rb",
      "spec/ipizza/provider/nordea_spec.rb",
