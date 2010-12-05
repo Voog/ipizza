@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = %q{ipizza}
-  s.version = "0.4.0"
+  s.version = "0.4.2"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Priit Haamer"]
-  s.date = %q{2010-12-04}
+  s.date = %q{2010-12-05}
   s.description = %q{      Simplifies generating payment requests and parsing responses from banks when using iPizza protocol.
 }
   s.email = %q{priit@fraktal.ee}
