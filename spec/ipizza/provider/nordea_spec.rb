@@ -7,7 +7,7 @@ describe Ipizza::Provider::Nordea do
     end
     
     it 'returns signed authentication request object' do
-      @req.params.fetch('A01Y_MAC').should be
+      @req.request_params.fetch('A01Y_MAC').should be
     end
     
     it 'adds service url to request' do

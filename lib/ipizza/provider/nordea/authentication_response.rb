@@ -20,8 +20,12 @@ module Ipizza::Provider
       @valid
     end
     
-    def user_info
-      valid? ? {'name' => @params['B02K_CUSTNAME'], 'custid' => @params['B02K_CUSTID']} : {}
+    def info_name
+      valid? ? @params['B02K_CUSTNAME'] : ''
+    end
+    
+    def info_social_security_id
+      valid? ? @params['B02K_CUSTID'] : ''
     end
     
     private
