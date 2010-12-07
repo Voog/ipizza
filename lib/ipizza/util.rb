@@ -5,11 +5,6 @@ require 'openssl'
 module Ipizza
   class Util
     
-    SWEDBANK = 'swedbank'
-    SEB = 'seb'
-    SAMPO = 'sampo'
-    NORDEA = 'nordea'
-    
     class << self
       
       def verify_signature(certificate_path, signature, data)
