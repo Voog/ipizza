@@ -42,7 +42,7 @@ module Ipizza::Provider
     end
     
     def payment_response(params)
-      response = Ipizza::PaymentResponse.new(params, Ipizza::Util::SEB)
+      response = Ipizza::PaymentResponse.new(params)
       response.verify(cert)
       
       return response
