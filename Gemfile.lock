@@ -1,3 +1,8 @@
+PATH
+  remote: .
+  specs:
+    ipizza (0.4.4)
+
 GEM
   remote: http://rubygems.org/
   specs:
@@ -15,4 +20,5 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  rspec (= 2.2.0)
+  ipizza!
+  rspec
