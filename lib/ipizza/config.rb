@@ -4,13 +4,17 @@ module Ipizza
   class Config
     class << self
 
+      attr_accessor :certs_root
+
       def load_from_file(yaml_path)
-        config = YAML::load_file(yaml_path)
+        @certs_root = File.dirname(yaml_path)
         
+        load_from_hash(YAML::load_file(yaml_path))
+      end
+      
+      def load_from_hash(config)
         config.each do |bank, params|
           params.each do |param, value|
-            value = normalize_file_location(yaml_path, value) if /^file_(cert|key)/ =~ param
-            
             begin
               self.send(:"#{bank}_#{param}=", value)
             rescue NoMethodError; end
@@ -25,8 +29,13 @@ module Ipizza
       def method_missing(m, *args)
         if /^(swedbank|seb|sampo|nordea)_(.*)=$/ =~ m.to_s
           clz = Ipizza::Provider.const_get($1.capitalize)
-          if clz.respond_to?(:"#{$2}=")
-            return clz.send(:"#{$2}=", *args)
+          key = $2
+          value = args.first
+          
+          value = normalize_file_location(value) if /^file_(cert|key)/ =~ key
+          
+          if clz.respond_to?(:"#{key}=")
+            return clz.send(:"#{key}=", *[value])
           end
         end
 
@@ -35,11 +44,11 @@ module Ipizza
       
       private
       
-      def normalize_file_location(yaml_path, file_path)
+      def normalize_file_location(file_path)
         if File.exists?(file_path)
           file_path
         else
-          file_path = File.expand_path(File.join(File.dirname(yaml_path), file_path))
+          file_path = File.expand_path(File.join(certs_root, file_path))
         end
         
         if File.exists?(file_path)

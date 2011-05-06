@@ -21,7 +21,8 @@ Configuration values should be set in YAML file in **provider.attribute_value** 
 At any time, configuration can be modified with `Ipizza::Config.configure` block:
 
     Ipizza::Config.configure do |c|
-      c.swedbank_service_url = 'http://foo.bar/swedbank'
+      c.certs_root            = '/path/to/certificates'
+      c.swedbank_service_url  = 'http://foo.bar/swedbank'
     end
 
 Configuration parameters

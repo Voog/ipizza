@@ -46,13 +46,22 @@ describe Ipizza::Config do
       Ipizza::Config.configure do |c|
         c.swedbank_service_url = 'http://foo.bar/swedbank'
       end
-      
+
       Ipizza::Provider::Swedbank.service_url.should == 'http://foo.bar/swedbank'
     end
     
     it 'should raise an error if configuration parameter does not exist' do
       lambda { Ipizza::Config.configure { |c| c.swedbank_unknown_attr = 'foo' } }.should raise_error
       lambda { Ipizza::Config.configure { |c| c.spermbank_service_url = 'foo' } }.should raise_error
+    end
+    
+    it 'loads certificates from directory specified by certs_root' do
+      Ipizza::Config.configure do |c|
+        c.certs_root = File.expand_path(File.dirname(__FILE__) + '/../certificates')
+        c.swedbank_file_cert = 'seb_test_pub.pem'
+      end
+      
+      Ipizza::Provider::Swedbank.file_cert.should == File.expand_path(File.dirname(__FILE__) + '/../certificates/seb_test_pub.pem')
     end
   end
 end
