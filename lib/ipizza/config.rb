@@ -32,7 +32,7 @@ module Ipizza
           key = $2
           value = args.first
           
-          value = normalize_file_location(value) if /^file_(cert|key)/ =~ key
+          value = load_certificate(value) if /^file_(cert|key)/ =~ key
           
           if clz.respond_to?(:"#{key}=")
             return clz.send(:"#{key}=", *[value])
@@ -44,7 +44,7 @@ module Ipizza
       
       private
       
-      def normalize_file_location(file_path)
+      def load_certificate(file_path)
         if File.exists?(file_path)
           file_path
         else
