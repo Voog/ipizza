@@ -76,7 +76,7 @@ Gateway specifications
 This library currently works with four Estonian Banks. Here are their respective interface specifications:
 
 * [Swedbank](https://www.swedbank.ee/static/pdf/business/d2d/paymentcollection/info_banklink_techspec_est.pdf)
-* [SEB](http://www.seb.ee/index/130212050201)
+* [SEB](http://www.seb.ee/ari/maksete-kogumine/maksete-kogumine-internetis/tehniline-spetsifikatsioon)
 * [Sampo](http://www.sampopank.ee/et/14732.html)
 * [Nordea](http://www.nordea.ee/Teenused+ärikliendile/E-lahendused/787802.html)
 
