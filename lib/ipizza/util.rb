@@ -62,10 +62,10 @@ module Ipizza
 
       # p(x) is length of the field x represented by three digits
       def func_p(val)
-        if RUBY_VERSION.to_f >= 1.9
-          sprintf("%03i", val.bytesize)
-        else 
+        if RUBY_VERSION < '1.9'
           sprintf("%03i", val.size)
+        else 
+          sprintf("%03i", val.bytesize)
         end
       end
     end
