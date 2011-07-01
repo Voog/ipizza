@@ -14,7 +14,20 @@ describe Ipizza::Provider::Seb do
   end
 
   describe '#payment_response' do
-    it 'should parse and verify the payment response from bank'
+    before(:each) do
+      @params = {
+        'VK_T_NO' => '1143', 'VK_REF' => '201107010000048', 'VK_SND_NAME' => 'TÕÄGER Leõpäöld¸´¨¦', 'VK_REC_ID' => 'testvpos',
+        'appname' => 'UN3MIN', 'keel' => 'EST', 'VK_T_DATE' => '01.07.2011', 'VK_SND_ACC' => '10010046155012', 'VK_STAMP' => '20110701000004',
+        'VK_CHARSET' => 'UTF-8', 'VK_RETURN' => 'https://store.kraftal.com/return/seb', 'VK_LANG' => '', 'VK_REC_NAME' => 'ALLAS ALLAR',
+        'VK_AMOUNT' => '.17', 'VK_SERVICE' => '1101', 'VK_AUTO' => 'N', 'VK_MSG' => 'Edicy invoice #20110701000004', 'act' => 'UPOSTEST2',
+        'VK_SND_ID' => 'EYP', 'VK_VERSION' => '008', 'VK_REC_ACC' => '10002050618003', 'VK_CURR' => 'EUR',
+        'VK_MAC' => 'fj7moIwqMbvhmftFs5/5muOD1Dj5sRIlTUUcXGbzNKGFCrRz/N2ZpprFlO+8el7BNnGAoqCc2b4V2BrJ5XRsyYtLy1Gi4W8eSqwxbjBefDo21PFXpTmXYYJVy98fIWmWhOIBPMnEq6BlVf100GlV1C3OL+2mBU/ZjtPQG+B7OHo='
+      }
+    end
+    
+    it 'should parse and verify the payment response from bank' do
+      Ipizza::Provider::Seb.new.payment_response(@params).should be_valid
+    end
   end
 
   describe '#authentication_request' do

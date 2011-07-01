@@ -14,7 +14,22 @@ describe Ipizza::Provider::Swedbank do
   end
 
   describe '#payment_response' do
-    it 'parses and verifies the payment response from bank'
+    before(:each) do
+      @params = {
+        'VK_T_NO' => '587', 'encoding' => 'UTF-8', 'VK_REC_ID' => 'fraktal', 'VK_REF' => '201107010000080',
+        'VK_SND_NAME' => Iconv.conv('ISO-8859-4', 'UTF-8', 'TÕNU RUNNEL'), 'VK_T_DATE' => '01.07.2011', 'VK_STAMP' => '20110701000008', 'VK_SND_ACC' => '1108126403',
+        'VK_LANG' => 'EST', 'VK_SERVICE' => '1101', 'VK_REC_NAME' => Iconv.conv('ISO-8859-4', 'UTF-8', 'FRAKTAL OÜ'), 'VK_AMOUNT' => '0.17',
+        'VK_MSG' => 'Edicy invoice #20110701000008', 'VK_AUTO' => 'N', 'VK_SND_ID' => 'HP', 'VK_VERSION' => '008', 'VK_ENCODING' => 'ISO-8859-4',
+        'VK_REC_ACC' => '221038811930', 'VK_CURR' => 'EUR',
+        'VK_MAC' => 'geOA+gjLJlFouGMih0WhbQwTehZM1FVus1OhO34yt8shekINWOzUi6gLymq9HYSDIAx/Gw2iUOKGxzhCRsXu3fxjVVlXpS9YRQfFF8HG1zoU2OUiNBZVa+7bGGDLOy+ZIhnyaW1I3jIFXHd57xDyCVCQvB0Ot4Ya9yE3YMKHTk4='
+      }
+      
+      Ipizza::Provider::Swedbank.file_cert = File.expand_path('../../../certificates/swedbank_production.pem', __FILE__)
+    end
+    
+    it 'parses and verifies the payment response from bank' do
+      Ipizza::Provider::Swedbank.new.payment_response(@params).should be_valid
+    end
   end
 
   describe '#authentication_request' do

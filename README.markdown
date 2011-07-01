@@ -45,7 +45,9 @@ Configuration parameters
       # relatively to YAML file
       file_cert: ./certificates/bank_public.crt
       snd_id: dealer
-      encoding: UTF-8
+      encoding: ISO-8859-4
+
+Please note that currently only ISO-8859-4 encoding is supported with Swedbank. UTF-8 works well with other payment providers.
 
 Payment requests
 ----------------

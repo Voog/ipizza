@@ -17,7 +17,7 @@ class Ipizza::Response
   def verify(certificate_path, charset = 'UTF-8')
     param_order = @@response_param_order[@params['VK_SERVICE']]
     verify_params = param_order.inject(Hash.new) { |h, p| h[p] = @params[p]; h }
-    mac_string = Ipizza::Util.mac_data_string(verify_params, param_order, 'UTF-8', charset)
+    mac_string = Ipizza::Util.mac_data_string(verify_params, param_order)
 
     @valid = Ipizza::Util.verify_signature(certificate_path, @params['VK_MAC'], mac_string)
   end

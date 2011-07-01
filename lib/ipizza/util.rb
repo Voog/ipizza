@@ -49,10 +49,9 @@ module Ipizza
       # Where || is string concatenation, p(x) is length of the field x represented by three digits.
       #
       # Parameters val1, val2, value3 would be turned into "003val1003val2006value3".
-      def mac_data_string(params, sign_param_order, to_charset = 'UTF-8', from_charset = 'UTF-8')
+      def mac_data_string(params, sign_param_order)
         sign_param_order.inject('') do |memo, param|
           val = params[param].to_s
-          val = Iconv.conv(to_charset, from_charset, val)
           memo << func_p(val) << val
           memo
         end

@@ -6,7 +6,7 @@ swedbank:
   file_cert: ../certificates/bank.crt
   file_key: ../certificates/dealer.key
   key_secret: foobar
-  encoding: UTF-8
+  encoding: ISO-8859-4
   snd_id: sender
 
 seb:
@@ -14,7 +14,7 @@ seb:
   return_url: http://test.local/seb
   cancel_url: http://test.local/seb
   login: dealer
-  file_cert: ../certificates/seb_test_pub.crt
+  file_cert: ../certificates/seb_test_pub.pem
   file_key: ../certificates/dealer.key
   key_secret: foobar
   encoding: UTF-8
