@@ -1,13 +1,13 @@
 module Ipizza::Provider
-  
+
   # TODO: configure whether use sha-1 or md5 for signing and verification
   class Nordea
-    
+
     require 'ipizza/provider/nordea/payment_request'
     require 'ipizza/provider/nordea/payment_response'
     require 'ipizza/provider/nordea/authentication_request'
     require 'ipizza/provider/nordea/authentication_response'
-        
+
     class << self
       attr_accessor :payments_service_url, :payments_return_url, :payments_reject_url, :payments_cancel_url
       attr_accessor :payments_rcv_id, :payments_language
@@ -15,7 +15,7 @@ module Ipizza::Provider
       attr_accessor :auth_rcv_id
       attr_accessor :file_key, :rcv_account, :rcv_name, :confirm, :keyvers
     end
-    
+
     def payment_request(payment, service = 1002)
       req = Ipizza::Provider::Nordea::PaymentRequest.new
       req.service_url = self.class.payments_service_url
@@ -37,17 +37,17 @@ module Ipizza::Provider
         'RETURN' => self.class.payments_return_url,
         'CANCEL' => self.class.payments_cancel_url
       }
-      
+
       req.sign(self.class.file_key)
       req
     end
-    
+
     def payment_response(params)
       response = Ipizza::Provider::Nordea::PaymentResponse.new(params)
-      response.verify(self.class.key)
+      response.verify(self.class.file_key)
       return response
     end
-    
+
     def authentication_request
       req = Ipizza::Provider::Nordea::AuthenticationRequest.new
       req.service_url = self.class.auth_service_url
@@ -67,7 +67,7 @@ module Ipizza::Provider
       req.sign(self.class.file_key)
       req
     end
-    
+
     def authentication_response(params)
       response = Ipizza::Provider::Nordea::AuthenticationResponse.new(params)
       response.verify(self.class.file_key)
