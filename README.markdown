@@ -100,5 +100,5 @@ Todo
 Authors
 =======
 
-* Priit Haamer
+* Thanks to [all contributors](https://github.com/priithaamer/ipizza/graphs/contributors)!
 * Tarmo Talu (Thanks for the 7-3-1 algorithm)
