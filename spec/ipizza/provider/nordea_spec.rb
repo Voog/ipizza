@@ -5,11 +5,11 @@ describe Ipizza::Provider::Nordea do
     before(:each) do
       @req = Ipizza::Provider::Nordea.new.authentication_request
     end
-    
+
     it 'returns signed authentication request object' do
       @req.request_params.fetch('A01Y_MAC').should be
     end
-    
+
     it 'adds service url to request' do
       @req.service_url.should == Ipizza::Provider::Nordea.auth_service_url
     end

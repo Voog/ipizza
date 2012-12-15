@@ -10,7 +10,7 @@ describe Ipizza::Provider::Nordea::AuthenticationResponse do
     @response = Ipizza::Provider::Nordea::AuthenticationResponse.new(@valid_params)
     @response.verify(Ipizza::Provider::Nordea.file_key)
   end
-  
+
   describe '#valid?' do
     context 'given valid parameters' do
       it 'returns true' do
@@ -18,13 +18,13 @@ describe Ipizza::Provider::Nordea::AuthenticationResponse do
       end
     end
   end
-  
+
   describe '#info_social_security_id' do
     it 'should get user social security id from the response' do
       @response.info_social_security_id.should == '37404280367'
     end
   end
-  
+
   describe '#info_name' do
     it 'should get user name from the response' do
       @response.info_name.should == 'Demo kasutaja'

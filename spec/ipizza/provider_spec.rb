@@ -5,11 +5,11 @@ describe Ipizza::Provider do
     it 'returns swedbank provider for "swedbank" attribute' do
       Ipizza::Provider.get('swedbank').should be_a(Ipizza::Provider::Swedbank)
     end
-    
+
     it 'returns swedbank provider for "hp" attribute' do
       Ipizza::Provider.get('hp').should be_a(Ipizza::Provider::Swedbank)
     end
-    
+
     it 'returns seb provider for "eyp" attribute' do
       Ipizza::Provider.get('eyp').should be_a(Ipizza::Provider::Seb)
     end
