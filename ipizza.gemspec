@@ -12,8 +12,10 @@ Gem::Specification.new do |s|
   s.summary     = %q{Implements iPizza protocol to communicate with Estonian Banks}
   s.description = %q{Simplifies generating payment requests and parsing responses from banks when using iPizza protocol.}
 
-  s.add_development_dependency 'rspec', '~> 2.12.0'
   s.add_development_dependency 'guard'
+  s.add_development_dependency 'rails', '~> 3.2.9'
+  s.add_development_dependency 'rspec', '~> 2.12.0'
+  s.add_development_dependency 'nokogiri'
 
   s.files         = `git ls-files`.split("\n")
   s.test_files    = `git ls-files -- {test,spec,features}/*`.split("\n")

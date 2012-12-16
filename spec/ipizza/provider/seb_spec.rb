@@ -2,15 +2,38 @@
 require File.expand_path(File.dirname(__FILE__) + '/../../spec_helper')
 
 describe Ipizza::Provider::Seb do
-  describe '#payment_request' do
+  let(:provider) { described_class.new }
 
-    before(:each) do
-      @payment = Ipizza::Payment.new(:stamp => 1, :amount => '123.34', :refnum => 1, :message => 'Payment message', :currency => 'EUR')
+  describe '#payment_request' do
+    let(:opts) { {} }
+    let(:payment) do
+      Ipizza::Payment.new(
+        :stamp => 1, :amount => '123.34', :refnum => 1,
+        :message => 'Payment message', :currency => 'EUR'
+      )
     end
+    let(:req) { provider.payment_request(payment, 1002, opts) }
 
     it 'should sign the request' do
-      req = Ipizza::Provider::Seb.new.payment_request(@payment)
       req.sign_params['VK_MAC'].should == 'aVCFvsLJiczQw9VoYMdtoQKj5fXkP8OI+JfQN8bFGKZGxC/X5gVIIi/Bh9AyB6JXwbeMOfUlnvuJIukpmBpDg3dEWkv4xGwKdfacqwYkgSC17OBb7VmZ+B4d6HYaO088wxH1FBSVa87HKFJ7ScTEJfd3ZEZly9WzTPHiFWvpRGDxAYtuO5nfGMcscxOQ0B0cbrIcLKvqLho25hIgns3+lvRDWsOb9lFH//7U8OBOC9SuXCBwvC4Fng3wqmBSKRJgAqvQ40Y4XpBGt3U/ix26Vs1cP8lOGHUyqzrqKbcmvqqhgWzqpa0JoK6im/MhBePyNnHVoC8Pqw4ZwZb4YrrPXw=='
+    end
+
+    it 'accepts return_url param' do
+      opts[:return_url] = 'http://return.url'
+      req.request_params['VK_RETURN'].should eq('http://return.url')
+    end
+
+    it 'uses default return_url param when not specified' do
+      req.request_params['VK_RETURN'].should eq(described_class.return_url)
+    end
+
+    it 'accepts cancel_url param' do
+      opts[:cancel_url] = 'http://cancel.url'
+      req.request_params['VK_CANCEL'].should eq('http://cancel.url')
+    end
+
+    it 'uses default cancel_url param when not specified' do
+      req.request_params['VK_CANCEL'].should eq(described_class.cancel_url)
     end
   end
 
@@ -27,7 +50,7 @@ describe Ipizza::Provider::Seb do
     end
 
     it 'should parse and verify the payment response from bank' do
-      Ipizza::Provider::Seb.new.payment_response(@params).should be_valid
+      provider.payment_response(@params).should be_valid
     end
   end
 
@@ -38,7 +61,7 @@ describe Ipizza::Provider::Seb do
     end
 
     it 'should sign the request' do
-      req = Ipizza::Provider::Seb.new.authentication_request
+      req = provider.authentication_request
       req.sign_params['VK_MAC'].should == '0ZBLzC3XddTNZ4YBNJlPsJ/RDK4g7Utot9L3lvaxD9J0dfKfN4FUnife3oAQjhyc8lOi5MeBdjekN5mW7KXEMcOSTR9kCJTLZcJg1nMHTDjZcLu9FTAk2wcSrc8kUgigh22vBA38wQfbsZvong5ETYanH8RchZUp72tmO2rFmKzdD8bsnubg6l3m5NxoFv+2F6RsxzwtpkCNaKBpIH4iyWIYFWX7H3hTiUWlAXwKp8GP8OYPr1wUDbP2jVxOwpv7MW3g/heKfu3INBSazsvD22WhsNeKPKmqjJDIiJvo5QRhYq5Shze28oWQyCixMfw2UW7pk0gOtYJkrlwEEo22zQ=='
     end
   end
@@ -54,7 +77,7 @@ describe Ipizza::Provider::Seb do
     end
 
     it 'should parse and verify the authentication response from bank' do
-      Ipizza::Provider::Seb.new.authentication_response(@params).should be_valid
+      provider.authentication_response(@params).should be_valid
     end
   end
 end

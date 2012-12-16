@@ -22,7 +22,13 @@ At any time, configuration can be modified with `Ipizza::Config.configure` block
 
     Ipizza::Config.configure do |c|
       c.certs_root            = '/path/to/certificates'
-      c.swedbank_service_url  = 'http://foo.bar/swedbank'
+
+      c.swedbank_snd_id      = 'snd_id'
+      c.swedbank_file_key    = 'private_key.pem'
+      c.swedbank_file_cert   = 'cert.pem'
+      c.swedbank_service_url = 'http://foo.bar/swedbank'
+      c.swedbank_return_url  = 'http://default-return-url.com/'
+      c.swedbank_cancel_url  = 'http://default-cancel-url.com/'
     end
 
 Configuration parameters
@@ -32,15 +38,15 @@ Configuration parameters
       service_url: http://foo.bar/swedbank
       return_url: http://mycompany.com/store
       cancel_url: http://mycompany.com/cancel
-      
+
       # Your private key file path. Can be specified relatively
       # to YAML file
       file_key: ./certificates/my_private.key
-      
+
       # If your private key is protected with password,
       # provide it here
       key_secret: private_key_password
-      
+
       # Path to bank's public key file. Can be specified
       # relatively to YAML file
       file_cert: ./certificates/bank_public.crt
@@ -71,6 +77,25 @@ Authentication requests
 
     response = Ipizza::Provider::Swedbank.new.authentication_response({'VK_PARAM_1' => 'VALUE 1', ...})
     response.valid?
+
+Rails integration
+=================
+
+### Controllers
+
+    @payment = Ipizza::Payment.new(
+      :stamp => 1, :amount => '123.34', :refnum => 1,
+      :message => 'Payment message', :currency => 'EUR'
+    )
+
+### Views
+
+    <%= payment_button @payment, :swedbank,
+      :value => "Pay with Swedbank",
+      :return_url => confirm_order_url(1) %>
+    <%= payment_button @payment, :seb, :value => "Pay with SEB" %>
+
+payment_button accepts these options: *return_url*, *cancel_url*, *value*.
 
 Gateway specifications
 ======================
