@@ -111,4 +111,5 @@ DEPENDENCIES
   ipizza!
   nokogiri
   rails (~> 3.2.9)
+  rake
   rspec (~> 2.12.0)
