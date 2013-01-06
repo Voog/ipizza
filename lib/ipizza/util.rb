@@ -21,7 +21,10 @@ module Ipizza
       end
 
       # Calculates and adds control number using 7-3-1 algoritm for Estonian banking account and reference numbers.
+      # Returns nil if argument is nil
       def sign_731(ref_num)
+        return if ref_num.nil?
+
         arr = ref_num.to_s.reverse.split('')
         m = 0
         r = 0
