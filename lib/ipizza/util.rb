@@ -1,17 +1,16 @@
 require 'base64'
-require 'iconv'
 require 'openssl'
 
 module Ipizza
   class Util
-    
+
     class << self
-      
+
       def verify_signature(certificate_path, signature, data)
         certificate = OpenSSL::X509::Certificate.new(File.read(certificate_path).gsub(/  /, '')).public_key
         @valid = certificate.verify(OpenSSL::Digest::SHA1.new, Base64.decode64(signature), data)
       end
-      
+
       def sign(privkey_path, privkey_secret, data)
         privkey = File.open(privkey_path, 'r') { |f| f.read }
         privkey = OpenSSL::PKey::RSA.new(privkey.gsub(/  /, ''), privkey_secret)
@@ -21,7 +20,10 @@ module Ipizza
       end
 
       # Calculates and adds control number using 7-3-1 algoritm for Estonian banking account and reference numbers.
+      # Returns nil if argument is nil
       def sign_731(ref_num)
+        return if ref_num.nil?
+
         arr = ref_num.to_s.reverse.split('')
         m = 0
         r = 0
@@ -63,7 +65,7 @@ module Ipizza
       def func_p(val)
         if RUBY_VERSION < '1.9'
           sprintf("%03i", val.size)
-        else 
+        else
           sprintf("%03i", val.bytesize)
         end
       end

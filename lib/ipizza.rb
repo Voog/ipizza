@@ -12,3 +12,7 @@ require 'ipizza/provider/swedbank'
 require 'ipizza/provider/seb'
 require 'ipizza/provider/sampo'
 require 'ipizza/provider/nordea'
+
+if defined?(Rails)
+  require 'ipizza/rails'
+end

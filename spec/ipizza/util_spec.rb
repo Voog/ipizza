@@ -6,13 +6,17 @@ describe Ipizza::Util do
 
   describe '.verify_signature' do
   end
-  
+
   describe '.sign_731' do
     it 'should add control number to the end of input string' do
       Ipizza::Util.sign_731('12').should == '123'
     end
+
+    it 'should not give result on nil argument' do
+      Ipizza::Util.sign_731(nil).should == nil
+    end
   end
-  
+
   describe '.mac_data_string' do
     it 'should compose mac string containing the values and their respective lengths' do
       Ipizza::Util.mac_data_string({'A' => 'aaa', 'B' => 'bbbb'}, ['B', 'A']).should == '004bbbb003aaa'

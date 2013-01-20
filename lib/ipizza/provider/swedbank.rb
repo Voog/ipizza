@@ -5,7 +5,7 @@ module Ipizza::Provider
       attr_accessor :service_url, :return_url, :cancel_url, :file_key, :key_secret, :file_cert, :snd_id, :encoding
     end
 
-    def payment_request(payment, service = 1002)
+    def payment_request(payment, service = 1002, opts = {})
       req = Ipizza::PaymentRequest.new
       req.service_url = self.class.service_url
       req.sign_params = {
@@ -21,8 +21,8 @@ module Ipizza::Provider
 
       req.extra_params = {
         'VK_CHARSET' => self.class.encoding,
-        'VK_RETURN' => self.class.return_url,
-        'VK_CANCEL' => self.class.cancel_url
+        'VK_RETURN' => opts.fetch(:return_url, self.class.return_url),
+        'VK_CANCEL' => opts.fetch(:cancel_url, self.class.cancel_url)
       }
 
       param_order = ['VK_SERVICE', 'VK_VERSION', 'VK_SND_ID', 'VK_STAMP', 'VK_AMOUNT', 'VK_CURR', 'VK_REF', 'VK_MSG']
