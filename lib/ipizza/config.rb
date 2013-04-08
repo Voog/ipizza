@@ -27,7 +27,7 @@ module Ipizza
       end
       
       def method_missing(m, *args)
-        if /^(swedbank|seb|sampo|nordea)_(.*)=$/ =~ m.to_s
+        if /^(swedbank|seb|sampo|krediidipank|nordea)_(.*)=$/ =~ m.to_s
           clz = Ipizza::Provider.const_get($1.capitalize)
           key = $2
           value = args.first

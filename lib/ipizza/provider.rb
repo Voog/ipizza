@@ -16,6 +16,10 @@ module Ipizza
           Ipizza::Provider::Sampo.new
         when 'sampopank'
           Ipizza::Provider::Sampo.new
+        when 'krep'
+          Ipizza::Provider::Krediidipank.new
+        when 'krediidipank'
+          Ipizza::Provider::Krediidipank.new
         when 'nordea'
           Ipizza::Provider::Nordea.new
         end

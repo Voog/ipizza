@@ -1,14 +1,12 @@
 Implements iPizza protocol to communicate with Estonian Banks.
 
-Usage
-=====
+# Usage
 
 Add gem dependency in your `Gemfile` and install the gem:
 
     gem 'ipizza'
 
-Configuration
-=============
+# Configuration
 
 Configuration can be made in two different ways, using `Ipizza::Config.configure` block or loading configuration properties from YAML file.
 
@@ -25,8 +23,7 @@ At any time, configuration can be modified with `Ipizza::Config.configure` block
       c.swedbank_service_url  = 'http://foo.bar/swedbank'
     end
 
-Configuration parameters
-------------------------
+## Configuration parameters
 
     swedbank:
       service_url: http://foo.bar/swedbank
@@ -49,8 +46,7 @@ Configuration parameters
 
 Please note that currently only ISO-8859-4 encoding is supported with Swedbank. UTF-8 works well with other payment providers.
 
-Payment requests
-----------------
+## Payment requests
 
 ### Building request
 
@@ -60,8 +56,7 @@ Payment requests
     )
     request = Ipizza::Provider::Swedbank.new.payment_request(@payment)
 
-Authentication requests
------------------------
+## Authentication requests
 
 ### Building request
 
@@ -72,33 +67,22 @@ Authentication requests
     response = Ipizza::Provider::Swedbank.new.authentication_response({'VK_PARAM_1' => 'VALUE 1', ...})
     response.valid?
 
-Gateway specifications
-======================
+# Gateway specifications
 
 This library currently works with four Estonian Banks. Here are their respective interface specifications:
 
 * [Swedbank](https://www.swedbank.ee/static/pdf/business/d2d/paymentcollection/info_banklink_techspec_est.pdf)
 * [SEB](http://www.seb.ee/ari/maksete-kogumine/maksete-kogumine-internetis/tehniline-spetsifikatsioon)
 * [Sampo](http://www.sampopank.ee/et/14732.html)
+* [Krediidipank](http://www.krediidipank.ee/business/settlements/bank-link/tehniline_kirjeldus.pdf)
 * [Nordea](http://www.nordea.ee/Teenused+ärikliendile/E-lahendused/787802.html)
 
-Helpful links
-=============
+# Helpful links
 
 * [Repository](http://github.com/priithaamer/ipizza)
 * [Issue tracker](http://github.com/priithaamer/ipizza/issues)
 
-Todo
-====
-
-* Raise reasonable exception during configuration when certificates or keys cannot be loaded
-* Write ipizza-rails module:
-  * Proper Rails initialization
-  * Write Rails controller and model generator
-  * Rails helper to generate iPizza request forms
-
-Authors
-=======
+# Authors
 
 * Thanks to [all contributors](https://github.com/priithaamer/ipizza/graphs/contributors)!
 * Tarmo Talu (Thanks for the 7-3-1 algorithm)

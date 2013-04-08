@@ -21,6 +21,15 @@ describe Ipizza::Provider do
     it 'returns sampo provider for "sampo" attribute' do
       Ipizza::Provider.get('sampo').should be_a(Ipizza::Provider::Sampo)
     end
+    
+    it 'returns krediidipank provider for "krep" attribute' do
+      Ipizza::Provider.get('krep').should be_a(Ipizza::Provider::Krediidipank)
+    end
+    
+    it 'returns krediidipank provider for "krediidipank" attribute' do
+      Ipizza::Provider.get('krediidipank').should be_a(Ipizza::Provider::Krediidipank)
+    end
+    
     it 'returns nordea provider for "nordea" attribute' do
       Ipizza::Provider.get('nordea').should be_a(Ipizza::Provider::Nordea)
     end
