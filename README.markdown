@@ -6,6 +6,10 @@ Add gem dependency in your `Gemfile` and install the gem:
 
     gem 'ipizza'
 
+## Ruby 1.8 support
+
+Since ipizza gem version 1.0.0, Ruby 1.8 support has been dropped. If you need to use this gem with older versions of Ruby, use 0.7.1 version of this gem.
+
 # Configuration
 
 Configuration can be made in two different ways, using `Ipizza::Config.configure` block or loading configuration properties from YAML file.
