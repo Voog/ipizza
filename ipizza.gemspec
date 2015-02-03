@@ -6,8 +6,8 @@ Gem::Specification.new do |s|
   s.name        = 'ipizza'
   s.version     = Ipizza::VERSION
   s.platform    = Gem::Platform::RUBY
-  s.authors     = ['Priit Haamer']
-  s.email       = ['priit@fraktal.ee']
+  s.authors     = ['Priit Haamer', 'Tanel Jakobsoo']
+  s.email       = ['priit@voog.com', 'tanel@voog.com']
   s.homepage    = 'https://github.com/Voog/ipizza'
   s.summary     = 'Implements iPizza protocol to communicate with Estonian Banks'
   s.description = 'Simplifies generating payment requests and parsing responses from banks when using iPizza protocol.'
