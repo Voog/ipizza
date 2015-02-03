@@ -13,7 +13,7 @@ module Ipizza::Provider
     end
     
     def success?
-      if @valid && !@params['RETURN_PAID'].blank? then true else false end
+      @valid && !@params['RETURN_PAID'].blank?
     end
     
     def valid?
@@ -21,13 +21,13 @@ module Ipizza::Provider
     end
     
     def payment_info
-      @payment_info ||= Ipizza::Payment.new(:stamp => @params['RETURN_STAMP'], :refnum => @params['RETURN_REF'])
+      @payment_info ||= Ipizza::Payment.new(stamp: @params['RETURN_STAMP'], refnum: @params['RETURN_REF'])
     end
     
     private
     
     def mac_data_string(key)
-      order = ['RETURN_VERSION', 'RETURN_STAMP', 'RETURN_REF', 'RETURN_PAID']
+      order = %w(RETURN_VERSION RETURN_STAMP RETURN_REF RETURN_PAID)
       
       datastr = order.inject('') do |memo, param|
         memo << @params[param].to_s

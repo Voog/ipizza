@@ -18,7 +18,7 @@ module Ipizza::Provider
     private
     
     def mac_data_string(key)
-      order = ['ACTION_ID', 'VERS', 'RCVID', 'LANGCODE', 'STAMP', 'IDTYPE', 'RETLINK', 'CANLINK', 'REJLINK', 'KEYVERS', 'ALG']
+      order = %w(ACTION_ID VERS RCVID LANGCODE STAMP IDTYPE RETLINK CANLINK REJLINK KEYVERS ALG)
       
       datastr = order.inject('') do |memo, param|
         memo << params[param].to_s << '&'

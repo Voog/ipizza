@@ -56,14 +56,18 @@ module Ipizza
         end
       end
 
+      def time_to_iso8601(time)
+        time.strftime('%Y-%m-%dT%H:%M:%S%z')
+      end
+
       private
 
-      # p(x) is length of the field x represented by three digits
+      # p(x) is length of the field x represented by three digits. When request encoding is in UTF-8 then characters count is calculated otherwise characters byte size is used.
       def func_p(val)
-        if RUBY_VERSION < '1.9'
-          sprintf("%03i", val.size)
-        else 
-          sprintf("%03i", val.bytesize)
+        if RUBY_VERSION < '1.9' || val.encoding.name == 'UTF-8'
+          sprintf('%03i', val.size)
+        else
+          sprintf('%03i', val.bytesize)
         end
       end
     end

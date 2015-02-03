@@ -3,10 +3,10 @@ swedbank:
   return_url: http://test.local/return
   cancel_url: http://test.local/cancel
   snd_id: dealer
-  file_cert: ../certificates/bank.pub
-  file_key: ../certificates/dealer.key
+  file_cert: ../certificates/pangalink_swedbank_bank_cert.pem
+  file_key: ../certificates/pangalink_swedbank_user_key.pem
   key_secret: foobar
-  encoding: ISO-8859-4
+  encoding: UTF-8
   wtf: not
 
 seb:

@@ -15,7 +15,11 @@ describe Ipizza::Util do
   
   describe '.mac_data_string' do
     it 'should compose mac string containing the values and their respective lengths' do
-      Ipizza::Util.mac_data_string({'A' => 'aaa', 'B' => 'bbbb'}, ['B', 'A']).should == '004bbbb003aaa'
+      Ipizza::Util.mac_data_string({'A' => 'aaa', 'B' => 'bbbb'}, %w(B A)).should == '004bbbb003aaa'
+    end
+
+    it 'should compose mac string containing the values and their respective lengths for UTF strings' do
+      Ipizza::Util.mac_data_string({'A' => 'õäu', 'B' => 'Žaaa'}, %w(B A)).should == '004Žaaa003õäu'
     end
   end
 end

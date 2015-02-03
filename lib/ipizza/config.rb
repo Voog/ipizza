@@ -27,7 +27,7 @@ module Ipizza
       end
       
       def method_missing(m, *args)
-        if /^(swedbank|seb|sampo|krediidipank|nordea)_(.*)=$/ =~ m.to_s
+        if /^(lhv|swedbank|seb|sampo|krediidipank|nordea)_(.*)=$/ =~ m.to_s
           clz = Ipizza::Provider.const_get($1.capitalize)
           key = $2
           value = args.first
@@ -45,13 +45,13 @@ module Ipizza
       private
       
       def load_certificate(file_path)
-        if File.exists?(file_path)
+        if File.exist?(file_path)
           file_path
         else
           file_path = File.expand_path(File.join(certs_root, file_path))
         end
         
-        if File.exists?(file_path)
+        if File.exist?(file_path)
           file_path
         else
           raise "Could not load certificate from file '#{file_path}'"

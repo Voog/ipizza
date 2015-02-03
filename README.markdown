@@ -1,5 +1,9 @@
 Implements iPizza protocol to communicate with Estonian Banks.
 
+Gem implements support for iPizza services (`1011`, `1012`, `4011` and `4012`) that are supported by members of the Estonian Banking Association [since October 2014](http://pangaliit.ee/et/arveldused/pangalingi-spetsifikatsioon).
+
+If you need to use this gem with old iPizza services implementations (`1001`, `1002`, `4001` and `4002`), use 1.0.0 version of this gem (NB! support for these services will end on 31 December 2015).
+
 # Usage
 
 Add gem dependency in your `Gemfile` and install the gem:
@@ -46,9 +50,7 @@ At any time, configuration can be modified with `Ipizza::Config.configure` block
       # relatively to YAML file
       file_cert: ./certificates/bank_public.crt
       snd_id: dealer
-      encoding: ISO-8859-4
-
-Please note that currently only ISO-8859-4 encoding is supported with Swedbank. UTF-8 works well with other payment providers.
+      encoding: UTF-8
 
 ## Payment requests
 
@@ -75,14 +77,16 @@ Please note that currently only ISO-8859-4 encoding is supported with Swedbank. 
 
 This library currently works with four Estonian Banks. Here are their respective interface specifications:
 
-* [Swedbank](https://www.swedbank.ee/static/pdf/business/d2d/paymentcollection/info_banklink_techspec_est.pdf)
+* [Swedbank](https://www.swedbank.ee/business/cash/ecommerce/banklink/description?language=EST)
 * [SEB](http://www.seb.ee/ari/maksete-kogumine/maksete-kogumine-internetis/tehniline-spetsifikatsioon)
-* [Sampo](http://www.sampopank.ee/et/14732.html)
-* [Krediidipank](http://www.krediidipank.ee/business/settlements/bank-link/tehniline_kirjeldus.pdf)
-* [Nordea](http://www.nordea.ee/Teenused+ärikliendile/E-lahendused/787802.html)
+* [Danske Bank](http://www.danskebank.ee/et/14732.html)
+* [Krediidipank](http://www.krediidipank.ee/business/settlements/bank-link/index.html)
+* [LHV Bank](https://www.lhv.ee/pangateenused/pangalink/)
+* [Nordea](http://www.nordea.ee/Teenused+%C3%A4rikliendile/Igap%C3%A4evapangandus/Maksete+kogumine/E-makse/1562142.html) (*uses SOLO protocol*)
 
 # Helpful links
 
+* [pangalink.net](https://pangalink.net/et/info)
 * [Repository](http://github.com/priithaamer/ipizza)
 * [Issue tracker](http://github.com/priithaamer/ipizza/issues)
 
