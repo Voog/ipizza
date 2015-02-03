@@ -1,21 +1,43 @@
+krediidipank:
+  service_url: https://i-pank.krediidipank.ee/pay
+  return_url: http://test.local/krediidipank
+  cancel_url: http://test.local/krediidipank
+  login: dealer
+  file_cert: ../certificates/pangalink_krediidipank_bank_cert.pem
+  file_key: ../certificates/pangalink_krediidipank_user_key.pem
+  key_secret: foobar
+  encoding: UTF-8
+  snd_id: sender
+
+lhv:
+  service_url: https://lhv.ee/banklink
+  return_url: http://test.local/lhv
+  cancel_url: http://test.local/lhv
+  login: dealer
+  file_cert: ../certificates/pangalink_lhv_bank_cert.pem
+  file_key: ../certificates/pangalink_lhv_user_key.pem
+  key_secret: foobar
+  encoding: UTF-8
+  snd_id: sender
+
 swedbank:
   service_url: https://www.swedbank.ee/banklink
   return_url: http://test.local/swedbank
   cancel_url: http://test.local/swedbank
   login: dealer
-  file_cert: ../certificates/bank.crt
-  file_key: ../certificates/dealer.key
+  file_cert: ../certificates/pangalink_swedbank_bank_cert.pem
+  file_key: ../certificates/pangalink_swedbank_user_key.pem
   key_secret: foobar
-  encoding: ISO-8859-4
+  encoding: UTF-8
   snd_id: sender
 
 seb:
-  service_url: https://www.seb.ee/banklink
+  service_url: https://www.seb.ee/cgi-bin/unet3.sh/un3min.r
   return_url: http://test.local/seb
   cancel_url: http://test.local/seb
   login: dealer
-  file_cert: ../certificates/seb_test_pub.pem
-  file_key: ../certificates/dealer.key
+  file_cert: ../certificates/pangalink_seb_bank_cert.pem
+  file_key: ../certificates/pangalink_seb_user_key.pem
   key_secret: foobar
   encoding: UTF-8
   snd_id: sender
@@ -36,3 +58,14 @@ nordea:
   confirm: 'YES'
   keyvers: '0001'
   file_key: ../certificates/nordea_test_priv
+
+sampo:
+  service_url: https://www2.danskebank.ee/ibank/pizza/pizza
+  return_url: http://test.local/sampo
+  cancel_url: http://test.local/sampo
+  login: dealer
+  file_cert: ../certificates/pangalink_danske_bank_cert.pem
+  file_key: ../certificates/pangalink_danske_user_key.pem
+  key_secret: foobar
+  encoding: UTF-8
+  snd_id: sender

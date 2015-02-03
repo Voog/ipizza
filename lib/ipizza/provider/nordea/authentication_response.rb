@@ -27,11 +27,15 @@ module Ipizza::Provider
     def info_social_security_id
       valid? ? @params['B02K_CUSTID'] : ''
     end
-    
+
+    def authentication_info
+      @authentication_info ||= Ipizza::Authentication.new(user_name: info_name, user_id: info_social_security_id)
+    end
+
     private
     
     def mac_data_string(key)
-      order = ['VERS', 'TIMESTMP', 'IDNBR', 'STAMP', 'CUSTNAME', 'KEYVERS', 'ALG', 'CUSTID', 'CUSTTYPE']
+      order = %w(VERS TIMESTMP IDNBR STAMP CUSTNAME KEYVERS ALG CUSTID CUSTTYPE)
       
       datastr = order.inject('') do |memo, param|
         memo << @params["B02K_#{param}"].to_s << '&'
