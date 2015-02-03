@@ -61,8 +61,8 @@ module Ipizza::Provider
         req.sign_params['VK_REPLY'] = '3012'
       when '4012'
         req.sign_params.merge(
-        'VK_REC_ID' => self.class.rec_id,
-        'VK_NONCE' => param[:vk_nonce]
+          'VK_REC_ID' => self.class.rec_id,
+          'VK_NONCE' => param[:vk_nonce]
         )
       end
 
