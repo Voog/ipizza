@@ -54,7 +54,7 @@ module Ipizza
       # Parameters val1, val2, value3 would be turned into "003val1003val2006value3".
       def mac_data_string(params, sign_param_order)
         (sign_param_order || []).inject('') do |memo, param|
-          val = params[param].to_s
+          val = params[param].to_s.strip
           memo << func_p(val) << val
           memo
         end
