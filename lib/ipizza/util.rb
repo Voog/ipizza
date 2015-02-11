@@ -7,8 +7,12 @@ module Ipizza
     class << self
       
       def verify_signature(certificate_path, signature, data)
-        certificate = OpenSSL::X509::Certificate.new(File.read(certificate_path).gsub(/  /, '')).public_key
-        @valid = certificate.verify(OpenSSL::Digest::SHA1.new, Base64.decode64(signature), data)
+        if !certificate_path.to_s.empty? && !signature.to_s.empty? && File.file?(certificate_path)
+          certificate = OpenSSL::X509::Certificate.new(File.read(certificate_path).gsub(/  /, '')).public_key
+          certificate.verify(OpenSSL::Digest::SHA1.new, Base64.decode64(signature), data)
+        else
+          false
+        end
       end
       
       def sign(privkey_path, privkey_secret, data)
@@ -45,11 +49,11 @@ module Ipizza
       #
       #   p(x1)||x1||p(x2)||x2||...||p(xn)||xn
       #
-      # Where || is string concatenation, p(x) is length of the field x represented by three digits.
+      # Where || is string concatenation, p(x) is length of the (stripped) field x represented by three digits.
       #
       # Parameters val1, val2, value3 would be turned into "003val1003val2006value3".
       def mac_data_string(params, sign_param_order)
-        sign_param_order.inject('') do |memo, param|
+        (sign_param_order || []).inject('') do |memo, param|
           val = params[param].to_s
           memo << func_p(val) << val
           memo
