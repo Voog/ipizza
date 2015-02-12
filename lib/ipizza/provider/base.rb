@@ -77,7 +77,7 @@ module Ipizza::Provider
 
     def authentication_response(params)
       response = Ipizza::AuthenticationResponse.new(params)
-      response.verify(self.class.file_cert, self.class.encoding)
+      response.verify(self.class.file_cert)
       response
     end
 

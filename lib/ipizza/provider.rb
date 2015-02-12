@@ -3,7 +3,7 @@ module Ipizza
 
     class << self
       def get(provider_name)
-        case provider_name.downcase
+        case provider_name.to_s.downcase
         when 'lhv'
           Ipizza::Provider::Lhv.new
         when 'swedbank', 'hp'
@@ -16,8 +16,6 @@ module Ipizza
           Ipizza::Provider::Krediidipank.new
         when 'nordea'
           Ipizza::Provider::Nordea.new
-        else
-          Ipizza::Provider::Base.new
         end
       end
     end
