@@ -45,5 +45,23 @@ describe Ipizza::Provider do
     it 'returns nothing for "unkn" attribute' do
       Ipizza::Provider.get('unkn').should be_nil
     end
+
+    describe '#payment_request' do
+      let(:payment) { Ipizza::Payment.new(stamp: 1, amount: '123.34', refnum: 1, message: 'Payment message', currency: 'EUR') }
+      before(:each) do
+        Ipizza::PaymentRequest.any_instance.stub(:sign)
+      end
+
+      it 'should assign return_url from payment' do
+        payment.return_url = "new url"
+        Ipizza::Provider::Base.new.payment_request(payment).sign_params['VK_RETURN'].should == "new url"
+      end
+
+      it 'should assign cancel_url from payment' do
+        payment.cancel_url = "new url"
+        Ipizza::Provider::Base.new.payment_request(payment).sign_params['VK_CANCEL'].should == "new url"
+      end
+
+    end
   end
 end

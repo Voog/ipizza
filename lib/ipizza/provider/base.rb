@@ -19,8 +19,8 @@ module Ipizza::Provider
         'VK_CURR' => payment.currency,
         'VK_REF' => Ipizza::Util.sign_731(payment.refnum),
         'VK_MSG' => payment.message,
-        'VK_RETURN' => self.class.return_url,
-        'VK_CANCEL' => self.class.cancel_url,
+        'VK_RETURN' => (payment.return_url || self.class.return_url),
+        'VK_CANCEL' => (payment.cancel_url || self.class.cancel_url),
         'VK_DATETIME' => Ipizza::Util.time_to_iso8601(Time.now)
       }
 
