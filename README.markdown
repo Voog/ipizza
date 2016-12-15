@@ -49,7 +49,8 @@ At any time, configuration can be modified with `Ipizza::Config.configure` block
       # Path to bank's public key file. Can be specified
       # relatively to YAML file
       file_cert: ./certificates/bank_public.crt
-      snd_id: dealer
+      snd_id: merchant
+      rec_id: bank
       encoding: UTF-8
 
 ## Payment requests
