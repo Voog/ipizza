@@ -14,8 +14,8 @@ module Ipizza
           Ipizza::Provider::Sampo.new
         when 'krep', 'krediidipank'
           Ipizza::Provider::Krediidipank.new
-        when 'nordea'
-          Ipizza::Provider::Nordea.new
+        when 'luminor', 'testluminor'
+          Ipizza::Provider::Luminor.new
         end
       end
     end

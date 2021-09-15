@@ -9,17 +9,25 @@ describe Ipizza::Provider do
     it 'returns swedbank provider for "swedbank" attribute' do
       Ipizza::Provider.get('swedbank').should be_a(Ipizza::Provider::Swedbank)
     end
-    
+
     it 'returns swedbank provider for "hp" attribute' do
       Ipizza::Provider.get('hp').should be_a(Ipizza::Provider::Swedbank)
     end
-    
+
     it 'returns seb provider for "eyp" attribute' do
       Ipizza::Provider.get('eyp').should be_a(Ipizza::Provider::Seb)
     end
 
     it 'returns seb provider for "seb" attribute' do
       Ipizza::Provider.get('seb').should be_a(Ipizza::Provider::Seb)
+    end
+
+    it 'returns luminor provider for "luminor" attribute' do
+      Ipizza::Provider.get('luminor').should be_a(Ipizza::Provider::Luminor)
+    end
+
+    it 'returns luminor provider for "testluminor" attribute' do
+      Ipizza::Provider.get('luminor').should be_a(Ipizza::Provider::Luminor)
     end
 
     it 'returns sampo provider for "sampo" attribute' do
@@ -33,11 +41,11 @@ describe Ipizza::Provider do
     it 'returns krediidipank provider for "krep" attribute' do
       Ipizza::Provider.get('krep').should be_a(Ipizza::Provider::Krediidipank)
     end
-    
+
     it 'returns krediidipank provider for "krediidipank" attribute' do
       Ipizza::Provider.get('krediidipank').should be_a(Ipizza::Provider::Krediidipank)
     end
-    
+
     it 'returns nordea provider for "nordea" attribute' do
       Ipizza::Provider.get('nordea').should be_a(Ipizza::Provider::Nordea)
     end

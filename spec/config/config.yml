@@ -42,6 +42,17 @@ seb:
   encoding: UTF-8
   snd_id: sender
 
+luminor:
+  service_url: https://banklink.luminor.ee/test
+  return_url: http://test.local/seb
+  cancel_url: http://test.local/seb
+  login: dealer
+  file_cert: ../certificates/pangalink_seb_bank_cert.pem
+  file_key: ../certificates/pangalink_seb_user_key.pem
+  key_secret: foobar
+  encoding: UTF-8
+  snd_id: sender
+
 nordea:
   payments_service_url: https://netbank.nordea.com/pnbepaytest/epayn.jsp
   payments_return_url: http://test.local/nordea
