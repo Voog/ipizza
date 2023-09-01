@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    ipizza (2.1.0)
+    ipizza (2.2.0)
 
 GEM
   remote: http://rubygems.org/
