@@ -14,9 +14,9 @@ class Ipizza::Response
     @params = params
   end
 
-  def verify(certificate_path)
+  def verify(certificate_path, hash_algorithm = Ipizza::Util::DEFAULT_HASH_ALGORITHM)
     mac_string = Ipizza::Util.mac_data_string(@params, PARAM_ORDER[@params['VK_SERVICE']])
 
-    @valid = Ipizza::Util.verify_signature(certificate_path, @params['VK_MAC'], mac_string)
+    @valid = Ipizza::Util.verify_signature(certificate_path, @params['VK_MAC'], mac_string, hash_algorithm)
   end
 end

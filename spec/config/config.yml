@@ -41,6 +41,8 @@ seb:
   key_secret: foobar
   encoding: UTF-8
   snd_id: sender
+  sign_algorithm: 'sha256'
+  verification_algorithm: 'sha256'
 
 luminor:
   service_url: https://banklink.luminor.ee/test

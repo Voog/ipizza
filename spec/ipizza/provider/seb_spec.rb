@@ -45,7 +45,12 @@ describe Ipizza::Provider::Seb do
     }
 
     it 'should parse and verify the payment response from bank' do
-      signature = Ipizza::Util.sign(bank_key, nil, Ipizza::Util.mac_data_string(params, Ipizza::Response::PARAM_ORDER['1111']))
+      signature = Ipizza::Util.sign(
+        bank_key,
+        nil,
+        Ipizza::Util.mac_data_string(params, Ipizza::Response::PARAM_ORDER['1111']),
+        Ipizza::Provider::Seb.sign_algorithm
+      )
       Ipizza::Provider::Seb.new.payment_response(params.merge('VK_MAC' => signature)).should be_valid
     end
   end
@@ -82,7 +87,12 @@ describe Ipizza::Provider::Seb do
     }
 
     it 'should parse and verify the authentication response from bank' do
-      signature = Ipizza::Util.sign(bank_key, nil, Ipizza::Util.mac_data_string(params, Ipizza::Response::PARAM_ORDER['3012']))
+      signature = Ipizza::Util.sign(
+        bank_key,
+        nil,
+        Ipizza::Util.mac_data_string(params, Ipizza::Response::PARAM_ORDER['3012']),
+        Ipizza::Provider::Seb.sign_algorithm
+      )
       Ipizza::Provider::Seb.new.authentication_response(params.merge('VK_MAC' => signature)).should be_valid
     end
   end

@@ -4,7 +4,20 @@ module Ipizza::Provider
     SUPPORTED_ENCODINGS = %w(UTF-8 ISO-8859-1 WINDOWS-1257)
 
     class << self
-      attr_accessor :service_url, :return_url, :cancel_url, :file_key, :key_secret, :file_cert, :snd_id, :rec_id, :rec_acc, :rec_name, :encoding, :lang
+      attr_accessor :service_url,
+                    :return_url,
+                    :cancel_url,
+                    :file_key,
+                    :key_secret,
+                    :file_cert,
+                    :sign_algorithm,
+                    :verification_algorithm,
+                    :snd_id,
+                    :rec_id,
+                    :rec_acc,
+                    :rec_name,
+                    :encoding,
+                    :lang
     end
 
     def payment_request(payment, service_no = 1012)
@@ -40,7 +53,10 @@ module Ipizza::Provider
 
     def payment_response(params)
       response = Ipizza::PaymentResponse.new(params)
-      response.verify(self.class.file_cert)
+      response.verify(
+        self.class.file_cert,
+        self.class.verification_algorithm || Ipizza::Util::DEFAULT_HASH_ALGORITHM
+      )
       response
     end
 
@@ -77,7 +93,10 @@ module Ipizza::Provider
 
     def authentication_response(params)
       response = Ipizza::AuthenticationResponse.new(params)
-      response.verify(self.class.file_cert)
+      response.verify(
+        self.class.file_cert,
+        self.class.verification_algorithm || Ipizza::Util::DEFAULT_HASH_ALGORITHM
+      )
       response
     end
 
