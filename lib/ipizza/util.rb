@@ -3,9 +3,9 @@ require 'openssl'
 
 module Ipizza
   class Util
-    
+
     class << self
-      
+
       def verify_signature(certificate_path, signature, data)
         if !certificate_path.to_s.empty? && !signature.to_s.empty? && File.file?(certificate_path)
           certificate = OpenSSL::X509::Certificate.new(File.read(certificate_path).gsub(/  /, '')).public_key
@@ -14,7 +14,7 @@ module Ipizza
           false
         end
       end
-      
+
       def sign(privkey_path, privkey_secret, data)
         privkey = File.open(privkey_path, 'r') { |f| f.read }
         privkey = OpenSSL::PKey::RSA.new(privkey.gsub(/  /, ''), privkey_secret)

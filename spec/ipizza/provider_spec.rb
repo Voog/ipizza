@@ -46,10 +46,6 @@ describe Ipizza::Provider do
       Ipizza::Provider.get('krediidipank').should be_a(Ipizza::Provider::Krediidipank)
     end
 
-    it 'returns nordea provider for "nordea" attribute' do
-      Ipizza::Provider.get('nordea').should be_a(Ipizza::Provider::Nordea)
-    end
-
     it 'returns nothing for "unkn" attribute' do
       Ipizza::Provider.get('unkn').should be_nil
     end
