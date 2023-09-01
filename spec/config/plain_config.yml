@@ -11,3 +11,5 @@ swedbank:
 
 seb:
   service_url: https://www.seb.ee/banklink
+  sign_algorithm: 'sha256'
+  verification_algorithm: 'sha1'

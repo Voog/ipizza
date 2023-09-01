@@ -4,23 +4,32 @@ require 'openssl'
 module Ipizza
   class Util
 
+    DEFAULT_HASH_ALGORITHM = 'sha1'
+
     class << self
 
-      def verify_signature(certificate_path, signature, data)
+      def verify_signature(certificate_path, signature, data, hash_algorithm = DEFAULT_HASH_ALGORITHM)
         if !certificate_path.to_s.empty? && !signature.to_s.empty? && File.file?(certificate_path)
           certificate = OpenSSL::X509::Certificate.new(File.read(certificate_path).gsub(/  /, '')).public_key
-          certificate.verify(OpenSSL::Digest::SHA1.new, Base64.decode64(signature), data)
+          certificate.verify(
+            digest_class(hash_algorithm).new,
+            Base64.decode64(signature),
+            data
+          )
         else
           false
         end
       end
 
-      def sign(privkey_path, privkey_secret, data)
+      def sign(privkey_path, privkey_secret, data, hash_algorithm = DEFAULT_HASH_ALGORITHM)
         privkey = File.open(privkey_path, 'r') { |f| f.read }
         privkey = OpenSSL::PKey::RSA.new(privkey.gsub(/  /, ''), privkey_secret)
 
-        signature = privkey.sign(OpenSSL::Digest::SHA1.new, data)
-        signature = Base64.encode64(signature).gsub(/\n/, '')
+        signature = privkey.sign(
+          digest_class(hash_algorithm).new,
+          data
+        )
+        Base64.encode64(signature).gsub(/\n/, '')
       end
 
       # Calculates and adds control number using 7-3-1 algoritm for Estonian banking account and reference numbers.
@@ -72,6 +81,16 @@ module Ipizza
           sprintf('%03i', val.size)
         else
           sprintf('%03i', val.bytesize)
+        end
+      end
+
+      def digest_class(hash_algorithm)
+        algorithm = (hash_algorithm || '').upcase
+
+        if OpenSSL::Digest.const_defined?(algorithm)
+          OpenSSL::Digest.const_get(algorithm)
+        else
+          raise ArgumentError, "Unknown hash algorithm OpenSSL::Digest::#{algorithm}"
         end
       end
     end

@@ -16,6 +16,8 @@ describe Ipizza::Config do
       Ipizza::Provider::Swedbank.encoding.should == 'UTF-8'
       
       Ipizza::Provider::Seb.service_url.should == 'https://www.seb.ee/banklink'
+      Ipizza::Provider::Seb.sign_algorithm.should == 'sha256'
+      Ipizza::Provider::Seb.verification_algorithm.should == 'sha1'
     end
   
     it 'should load certificates from path relative to configuration file' do
