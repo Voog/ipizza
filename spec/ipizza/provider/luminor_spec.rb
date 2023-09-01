@@ -2,7 +2,7 @@ require File.expand_path(File.dirname(__FILE__) + '/../../spec_helper')
 
 describe Ipizza::Provider::Luminor do
   let(:response_time) { Ipizza::Util.time_to_iso8601(Time.now) }
-  let(:bank_key) { File.expand_path('../../../certificates/pangalink_luminor_bank_key.pem', __FILE__) }
+  let(:bank_key) { File.expand_path('../../../certificates/pangalink_seb_bank_key.pem', __FILE__) }
 
   describe '#payment_request' do
     let(:payment) { Ipizza::Payment.new(stamp: 1, amount: '123.34', refnum: 1, message: 'Payment message', currency: 'EUR') }

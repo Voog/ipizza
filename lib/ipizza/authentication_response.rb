@@ -1,18 +1,18 @@
 module Ipizza
   class AuthenticationResponse < Ipizza::Response
-    
+
     def success?
       %w(3012 3013).include?(@params['VK_SERVICE'])
     end
-    
+
     def valid?
       @valid
     end
-    
+
     def info_social_security_id
       authentication_info.user_id
     end
-    
+
     def info_name
       authentication_info.user_name
     end

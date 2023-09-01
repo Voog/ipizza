@@ -3,15 +3,15 @@ class Ipizza::PaymentResponse < Ipizza::Response
   def success?
     %w(1111).include?(@params['VK_SERVICE'])
   end
-  
+
   def valid?
     @valid
   end
-  
+
   def automatic_message?
     @params['VK_AUTO'] == 'Y'
   end
-  
+
   def payment_info
     @payment_info ||= Ipizza::Payment.new(
       provider: @params['VK_SND_ID'],
