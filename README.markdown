@@ -1,6 +1,6 @@
 Implements iPizza protocol to communicate with Estonian Banks.
 
-Gem implements support for iPizza services (`1011`, `1012`, `4011` and `4012`) that are supported by members of the Estonian Banking Association [since October 2014](http://pangaliit.ee/et/arveldused/pangalingi-spetsifikatsioon).
+Gem implements support for iPizza services (`1011`, `1012`, `4011` and `4012`) that are supported by members of the Estonian Banking Association [since October 2014](https://pangaliit.ee/arveldused/pangalingi-spetsifikatsioon).
 
 If you need to use this gem with old iPizza services implementations (`1001`, `1002`, `4001` and `4002`), use 1.0.0 version of this gem (NB! support for these services will end on 31 December 2015).
 
@@ -37,20 +37,24 @@ At any time, configuration can be modified with `Ipizza::Config.configure` block
       service_url: http://foo.bar/swedbank
       return_url: http://mycompany.com/store
       cancel_url: http://mycompany.com/cancel
-      
+
       # Your private key file path. Can be specified relatively
       # to YAML file
       file_key: ./certificates/my_private.key
-      
+
       # If your private key is protected with password,
       # provide it here
       key_secret: private_key_password
-      
+
       # Path to bank's public key file. Can be specified
       # relatively to YAML file
       file_cert: ./certificates/bank_public.crt
+      login: dealer
       snd_id: dealer
       encoding: UTF-8
+      sign_algorithm: sha256 # default is sha1
+      verification_algorithm: sha256 # default is sha1
+      vk_version: "009" # VK_VERSION. Default is "008"
 
 ## Payment requests
 
@@ -77,20 +81,17 @@ At any time, configuration can be modified with `Ipizza::Config.configure` block
 
 This library currently works with four Estonian Banks. Here are their respective interface specifications:
 
-* [Swedbank](https://www.swedbank.ee/business/cash/ecommerce/banklink/description?language=EST)
-* [SEB](http://www.seb.ee/ari/maksete-kogumine/maksete-kogumine-internetis/tehniline-spetsifikatsioon)
-* [Danske Bank](http://www.danskebank.ee/et/14732.html)
-* [Krediidipank](http://www.krediidipank.ee/business/settlements/bank-link/index.html)
-* [LHV Bank](https://www.lhv.ee/pangateenused/pangalink/)
-* [Nordea](http://www.nordea.ee/Teenused+%C3%A4rikliendile/Igap%C3%A4evapangandus/Maksete+kogumine/E-makse/1562142.html) (*uses SOLO protocol*)
+* [Swedbank](https://www.swedbank.ee/business/cash/ecommerce/support)
+* [SEB](https://www.seb.ee/en/business/daily-banking/bank-link)
+* [LHV Bank](https://partners.lhv.ee/en/banklink)
 
 # Helpful links
 
 * [pangalink.net](https://pangalink.net/et/info)
-* [Repository](http://github.com/priithaamer/ipizza)
-* [Issue tracker](http://github.com/priithaamer/ipizza/issues)
+* [Repository](https://github.com/Voog/ipizza)
+* [Issue tracker](https://github.com/Voog/ipizza/issues)
 
 # Authors
 
-* Thanks to [all contributors](https://github.com/priithaamer/ipizza/graphs/contributors)!
+* Thanks to [all contributors](https://github.com/Voog/ipizza/graphs/contributors)!
 * Tarmo Talu (Thanks for the 7-3-1 algorithm)

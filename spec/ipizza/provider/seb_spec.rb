@@ -16,7 +16,7 @@ describe Ipizza::Provider::Seb do
       req = Ipizza::Provider::Seb.new.payment_request(payment)
       params = {
         'VK_SERVICE' => '1012',
-        'VK_VERSION' => '008',
+        'VK_VERSION' => '009',
         'VK_SND_ID' => Ipizza::Provider::Seb.snd_id,
         'VK_STAMP' => payment.stamp,
         'VK_AMOUNT' => sprintf('%.2f', payment.amount),
@@ -65,7 +65,7 @@ describe Ipizza::Provider::Seb do
       req = Ipizza::Provider::Seb.new.authentication_request
       params = {
         'VK_SERVICE' => '4011',
-        'VK_VERSION' => '008',
+        'VK_VERSION' => '009',
         'VK_SND_ID' => Ipizza::Provider::Seb.snd_id,
         'VK_RETURN' => Ipizza::Provider::Seb.return_url,
         'VK_DATETIME' => Ipizza::Util.time_to_iso8601(Time.now),

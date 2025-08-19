@@ -41,6 +41,7 @@ seb:
   key_secret: foobar
   encoding: UTF-8
   snd_id: sender
+  vk_version: '009'
   sign_algorithm: 'sha256'
   verification_algorithm: 'sha256'
 
