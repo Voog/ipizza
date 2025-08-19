@@ -1,6 +1,7 @@
 module Ipizza::Provider
   class Base
 
+    DEFAULT_VK_VERSION = '008'
     SUPPORTED_ENCODINGS = %w(UTF-8 ISO-8859-1 WINDOWS-1257)
 
     class << self
@@ -17,7 +18,8 @@ module Ipizza::Provider
                     :rec_acc,
                     :rec_name,
                     :encoding,
-                    :lang
+                    :lang,
+                    :vk_version
     end
 
     def payment_request(payment, service_no = 1012)
@@ -25,7 +27,7 @@ module Ipizza::Provider
       req.service_url = self.class.service_url
       req.sign_params = {
         'VK_SERVICE' => service_no,
-        'VK_VERSION' => '008',
+        'VK_VERSION' => vk_version,
         'VK_SND_ID' => self.class.snd_id,
         'VK_STAMP' => payment.stamp,
         'VK_AMOUNT' => sprintf('%.2f', payment.amount),
@@ -65,7 +67,7 @@ module Ipizza::Provider
       req.service_url = self.class.service_url
       req.sign_params = {
         'VK_SERVICE' => service_no,
-        'VK_VERSION' => '008',
+        'VK_VERSION' => vk_version,
         'VK_SND_ID' => self.class.snd_id,
         'VK_RETURN' => self.class.return_url,
         'VK_DATETIME' => Ipizza::Util.time_to_iso8601(Time.now),
@@ -104,6 +106,11 @@ module Ipizza::Provider
 
     def get_encoding(val)
       SUPPORTED_ENCODINGS.include?(val.to_s.upcase) ? val.to_s.upcase : 'UTF-8'
+    end
+
+    def vk_version
+      str = self.class.vk_version.to_s.strip
+      str.empty? ? DEFAULT_VK_VERSION : str
     end
   end
 end

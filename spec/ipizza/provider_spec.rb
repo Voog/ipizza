@@ -50,4 +50,32 @@ describe Ipizza::Provider do
       Ipizza::Provider.get('unkn').should be_nil
     end
   end
+
+  describe 'VK_VERSION override' do
+    let(:payment) do
+      Ipizza::Payment.new(stamp: 1, amount: '1.00', refnum: 1, message: 'Msg', currency: 'EUR')
+    end
+
+    before do
+      # Reset any custom value potentially set by other specs
+      Ipizza::Provider::Swedbank.vk_version = nil
+    end
+
+    it 'defaults to 008 when not set' do
+      req = Ipizza::Provider::Swedbank.new.payment_request(payment)
+      req.sign_params['VK_VERSION'].should == '008'
+    end
+
+    it 'uses overridden static value' do
+      Ipizza::Provider::Swedbank.vk_version = '009'
+      req = Ipizza::Provider::Swedbank.new.payment_request(payment)
+      req.sign_params['VK_VERSION'].should == '009'
+    end
+
+    it 'falls back when blank string provided' do
+      Ipizza::Provider::Swedbank.vk_version = '  '
+      req = Ipizza::Provider::Swedbank.new.authentication_request
+      req.sign_params['VK_VERSION'].should == '008'
+    end
+  end
 end
