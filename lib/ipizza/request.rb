@@ -1,6 +1,8 @@
 module Ipizza
   class Request
 
+    DEFAULT_MAC_PARAM = 'VK_MAC'
+
     attr_accessor :extra_params
     attr_accessor :sign_params
     attr_accessor :service_url
@@ -12,9 +14,14 @@ module Ipizza
       '4012' => %w(VK_SERVICE VK_VERSION VK_SND_ID VK_REC_ID VK_NONCE VK_RETURN VK_DATETIME VK_RID)
     }
 
-    def sign(privkey_path, privkey_secret, order, mac_param = 'VK_MAC')
-      signature = Ipizza::Util.sign(privkey_path, privkey_secret, Ipizza::Util.mac_data_string(sign_params, order))
-      self.sign_params[mac_param] = signature
+    def sign(privkey_path, privkey_secret, order, mac_param = nil, hash_algorithm = nil)
+      signature = Ipizza::Util.sign(
+        privkey_path,
+        privkey_secret,
+        Ipizza::Util.mac_data_string(sign_params, order),
+        hash_algorithm || Ipizza::Util::DEFAULT_HASH_ALGORITHM
+      )
+      self.sign_params[mac_param || DEFAULT_MAC_PARAM] = signature
     end
 
     def request_params

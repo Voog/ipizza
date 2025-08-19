@@ -42,8 +42,8 @@ seb:
   encoding: UTF-8
   snd_id: sender
   vk_version: '009'
-  sign_algorithm: 'sha256'
-  verification_algorithm: 'sha256'
+  sign_algorithm: 'sha512'
+  verification_algorithm: 'sha512'
 
 luminor:
   service_url: https://banklink.luminor.ee/test

@@ -27,7 +27,12 @@ describe Ipizza::Provider::Seb do
         'VK_CANCEL' => Ipizza::Provider::Seb.cancel_url,
         'VK_DATETIME' => Ipizza::Util.time_to_iso8601(Time.now)
       }
-      signature = Ipizza::Util.sign(Ipizza::Provider::Seb.file_key, Ipizza::Provider::Seb.key_secret, Ipizza::Util.mac_data_string(params, Ipizza::Request::PARAM_ORDER['1012']))
+      signature = Ipizza::Util.sign(
+        Ipizza::Provider::Seb.file_key,
+        Ipizza::Provider::Seb.key_secret,
+        Ipizza::Util.mac_data_string(params, Ipizza::Request::PARAM_ORDER['1012']),
+        Ipizza::Provider::Seb.sign_algorithm || Ipizza::Util::DEFAULT_HASH_ALGORITHM
+      )
       req.sign_params['VK_MAC'].should == signature
     end
   end
@@ -72,7 +77,12 @@ describe Ipizza::Provider::Seb do
         'VK_RID' => '',
         'VK_REPLY' => '3012'
       }
-      signature = Ipizza::Util.sign(Ipizza::Provider::Seb.file_key, Ipizza::Provider::Seb.key_secret, Ipizza::Util.mac_data_string(params, Ipizza::Request::PARAM_ORDER['4011']))
+      signature = Ipizza::Util.sign(
+        Ipizza::Provider::Seb.file_key,
+        Ipizza::Provider::Seb.key_secret,
+        Ipizza::Util.mac_data_string(params, Ipizza::Request::PARAM_ORDER['4011']),
+        Ipizza::Provider::Seb.sign_algorithm || Ipizza::Util::DEFAULT_HASH_ALGORITHM
+      )
       req.sign_params['VK_MAC'].should == signature
     end
   end
