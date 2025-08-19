@@ -49,7 +49,13 @@ module Ipizza::Provider
         'VK_LANG' => self.class.lang
       }
 
-      req.sign(self.class.file_key, self.class.key_secret, Ipizza::Request::PARAM_ORDER[service_no.to_s])
+      req.sign(
+        self.class.file_key,
+        self.class.key_secret,
+        Ipizza::Request::PARAM_ORDER[service_no.to_s],
+        Ipizza::Request::DEFAULT_MAC_PARAM,
+        self.class.sign_algorithm || Ipizza::Util::DEFAULT_HASH_ALGORITHM
+      )
       req
     end
 
@@ -89,7 +95,13 @@ module Ipizza::Provider
         'VK_LANG' => self.class.lang
       }
 
-      req.sign(self.class.file_key, self.class.key_secret, Ipizza::Request::PARAM_ORDER[service_no.to_s])
+      req.sign(
+        self.class.file_key,
+        self.class.key_secret,
+        Ipizza::Request::PARAM_ORDER[service_no.to_s],
+        Ipizza::Request::DEFAULT_MAC_PARAM,
+        self.class.sign_algorithm || Ipizza::Util::DEFAULT_HASH_ALGORITHM
+      )
       req
     end
 

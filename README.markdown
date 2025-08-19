@@ -52,8 +52,8 @@ At any time, configuration can be modified with `Ipizza::Config.configure` block
       login: dealer
       snd_id: dealer
       encoding: UTF-8
-      sign_algorithm: sha256 # default is sha1
-      verification_algorithm: sha256 # default is sha1
+      sign_algorithm: sha512 # default is sha1
+      verification_algorithm: sha512 # default is sha1
       vk_version: "009" # VK_VERSION. Default is "008"
 
 ## Payment requests
